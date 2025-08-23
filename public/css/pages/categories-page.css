@@ -1,0 +1,9 @@
+.category-tree {
+    
+}
+
+.categories-page {
+    display: flex;
+    flex-direction: row;
+    min-height: 0;
+}

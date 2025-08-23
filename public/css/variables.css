@@ -1,0 +1,66 @@
+:root {
+    /* Основные цвета */
+    --secondary: #a777e3;
+    --secondary-light: #e2d4f7;
+    --light: #f9fafb;
+    --gray: #6b7280;
+
+    --light-gray: #dddddd;
+
+    --link-blue: #4898f3;
+
+    --blue: #0c78f3;
+
+    --telegram: #0088cc; 
+    --telegram-hover: #0077b3;
+
+    /* Размеры */
+    --radius: 12px;
+    --header-height: 60px;
+
+    /* Размеры для каталога */
+    --listing-img-height: 180px;
+    --sidebar-width: 260px;
+
+    --rating-star: #ff9b18;
+    --shadow-color: rgba(56, 56, 56, 0.22);
+
+    --sticky-z-index: 1020;
+
+    /* Новые переменные, которых не хватало (смягчённые оттенки) */
+    --success-light: #e6f7f0;
+    --success-dark: #0f766e;
+
+    --warning-light: #fef9e7;
+    --warning-dark: #b45309;
+
+    --danger: #f87171;
+
+    /* Перманентные цвета */
+
+    --permanent-text-color: #e9e9e9;
+    --hover-overlay: rgba(99, 102, 241, 0.11);
+
+    /*Изменяемые темой цвета*/
+
+    --color-bg-body: #ffffff;
+    --background: #d8dfdf;
+    --text-color: #1f2937;
+    --border-color: #d6d5d5;
+
+    --primary-light: #9396ff;
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+}
+
+[data-theme="dark"] {
+    --background: #1f1f1f;
+    --color-bg-body: #28292a;
+    --text-color: #e9e9e9;
+    --accent-color: #66b2ff;
+    --border-color: #525252;
+
+    --primary-light: #4a4e94;
+    --primary: #7377bd;
+    --primary-dark: #534e9c;
+}
