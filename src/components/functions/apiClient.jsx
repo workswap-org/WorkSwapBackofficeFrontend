@@ -16,6 +16,7 @@ async function refreshToken() {
                 return res.json();
             })
             .then(data => {
+                if (!data.accessToken) throw new Error("No access token in response");
                 localStorage.setItem("accessToken", data.accessToken);
                 return data.accessToken;
             })
@@ -29,38 +30,41 @@ async function refreshToken() {
 export async function apiFetch(url, options = {}) {
     let token = localStorage.getItem("accessToken");
 
-    const headers = {
-        ...(options.headers || {}),
-        Authorization: token ? `Bearer ${token}` : "",
-    };
-    console.log("headers: " + headers);
+    const makeRequest = async (authToken) => {
+        const params = {
+            locale: "ru"
+        };
 
-    let res = await fetch(`${API_BASE}${url}`, {
-        ...options,
-        headers,
-        credentials: "include",
-    });
-    console.log("res: " + res);
-    console.log("status: " + res.status);
+        const queryString  = new URLSearchParams(params).toString();
+
+        const headers = {
+            ...(options.headers || {}),
+            Authorization: authToken ? `Bearer ${authToken}` : "",
+        };
+
+        return fetch(`${API_BASE}${url}?${queryString }`, {
+            ...options,
+            headers,
+            credentials: "include",
+        });
+    };
+
+    let res = await makeRequest(token);
+
     if (res.status === 401) {
-        // accessToken expired → обновляем
         try {
             token = await refreshToken();
-            const retryHeaders = {
-                ...(options.headers || {}),
-                Authorization: `Bearer ${token}`,
-            };
-
-            res = await fetch(`${API_BASE}${url}`, {
-                ...options,
-                headers: retryHeaders,
-                credentials: "include",
-            });
+            res = await makeRequest(token);
         } catch (e) {
             console.error("Не удалось обновить токен:", e);
             throw e;
         }
     }
 
-    return res;
+    if (!res.ok) {
+        throw new Error("Ошибка запроса: ${res.status}");
+    }
+
+    // всегда отдаём уже распарсенный JSON
+    return res.json();
 }

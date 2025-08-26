@@ -1,9 +1,8 @@
 import "#/css/pages/categories-page.css";
 import { useEffect, useState } from "react";
 import CategoryTree from "./CategoryTree";
-import { API_BASE } from "@/api/config";
 import { useAuth } from "@/contexts/auth/useAuth";
-import { apiFetch} from "@/components/functions/ApiFetch";
+import { apiFetch} from "@/components/functions/apiClient";
 
 const CategoriesPage = () => {
     const { accessToken } = useAuth();
@@ -14,10 +13,7 @@ const CategoriesPage = () => {
         const fetchCategories = async () => {
             try {
                 const res = await apiFetch(`/api/categories`);
-                if (!res.ok) {
-                    throw new Error("Ошибка загрузки категорий");
-                }
-                const data = await res.json();
+                const data = await res;
                 setCategories(data.categories || []);
             } catch (err) {
                 console.error(err);

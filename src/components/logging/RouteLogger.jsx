@@ -5,7 +5,7 @@ const RouteLogger = () => {
     const location = useLocation();
 
     useEffect(() => {
-        console.log("Navigation to:", location.pathname, location.search);
+        /* console.log("Navigation to:", location.pathname, location.search); */
     }, [location]);
 
     return null; // ничего не рендерим

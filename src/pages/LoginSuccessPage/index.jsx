@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useAuth } from "@/contexts/auth/useAuth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { API_BASE } from "@/api/config";
-import { apiFetch } from "../../components/functions/ApiFetch";
+import { apiFetch } from "../../components/functions/apiClient";
 
 const LoginSuccessPage = () => {
     const { setUser, setAccessToken } = useAuth();
@@ -21,7 +21,6 @@ const LoginSuccessPage = () => {
             setAccessToken(data.accessToken);
             return apiFetch(`/api/user/current`);
         })
-        .then(res => res.json())
         .then(user => {
             setUser(user);
 

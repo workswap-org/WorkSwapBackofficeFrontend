@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
 import { API_BASE } from "@/api/config";
-import { apiFetch } from "@/components/functions/ApiFetch";
+import { apiFetch } from "@/components/functions/apiClient";
 
 export const AuthProvider = ({ children }) => {
     const [accessToken, setAccessToken] = useState(() => localStorage.getItem("accessToken"));
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
                     const data = await res.json();
                     setAccessToken(data.accessToken);
                     const meRes = await apiFetch(`/api/user/current`);
-                    if (meRes.ok) setUser(await meRes.json());
+                    if (meRes.ok) setUser(await meRes);
                 } else {
                     setAccessToken(null);
                     setUser(null);

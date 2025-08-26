@@ -3,11 +3,11 @@ import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import { useAuth } from "@/contexts/auth/useAuth";
 import "#/css/pages/main-admin-page.css";
-import { apiFetch } from "@/components/functions/ApiFetch";
+import { apiFetch } from "@/components/functions/apiClient";
 
 export default function Layout() {
     const location = useLocation();
-    console.log(location);
+    /* console.log(location); */
     const { user } = useAuth();
 
     const activePage = (() => {
