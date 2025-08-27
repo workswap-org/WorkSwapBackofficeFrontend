@@ -1,8 +1,26 @@
-import TaskCreateModalBtn from "./TaskCreateModal";
-import TaskComments from "./TaskComment";
+import TaskCreateModal from "./TaskCreateModal";
+import TaskComments from "./TaskComments";
+import TaskDetails from "./TaskDetails";
 import TaskTable from "./TasksTable";
+import { useEffect, useState } from "react";
 
 const TasksPage = () => {
+
+    const [selectedTaskId, setSelectedTaskId] = useState(null);
+
+    useEffect(() => {
+        // Создаём link для CSS
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "/css/pages/tasks-page.css"; // путь к CSS из public
+        link.id = "login-page-css";
+        document.head.appendChild(link);
+
+        // Убираем стили при размонтировании
+        return () => {
+            document.head.removeChild(link);
+        };
+    }, []);
 
     return (
         <>
@@ -17,17 +35,23 @@ const TasksPage = () => {
                         <div className="d-flex justify-content-between align-items-center">
                             <h2>Задачи</h2>
                         </div>
-                        <TaskCreateModalBtn />
+                        <TaskCreateModal />
                     </div>
                     <div className="task-page-container">
                         <div className="tasks-aside">
-                            <div id="taskDetailsContainer"></div>
+                            <div id="taskDetailsContainer">
+                                <TaskDetails 
+                                    taskId={selectedTaskId}
+                                />
+                            </div>
                             <div className="task-comments-container" id="taskCommentsContainer">
-                                <TaskComments/>
+                                <TaskComments 
+                                    taskId={selectedTaskId}
+                                />
                             </div>
                         </div>
                         <div className="global-tasks-container">
-                            <TaskTable/>
+                            <TaskTable onSelectTask={setSelectedTaskId}/>
                         </div>
                     </div>
                 </div>

@@ -27,22 +27,24 @@ async function refreshToken() {
     return refreshPromise;
 }
 
-export async function apiFetch(url, options = {}) {
+export async function apiFetch(url, options = {}, extraParams = {}) {
     let token = localStorage.getItem("accessToken");
 
     const makeRequest = async (authToken) => {
-        const params = {
-            locale: "ru"
-        };
+        // базовые параметры
+        const baseParams = { locale: "ru", ...extraParams };
 
-        const queryString  = new URLSearchParams(params).toString();
+        const queryString = new URLSearchParams(baseParams).toString();
 
         const headers = {
             ...(options.headers || {}),
             Authorization: authToken ? `Bearer ${authToken}` : "",
         };
 
-        return fetch(`${API_BASE}${url}?${queryString }`, {
+        // проверим, есть ли уже ?
+        const separator = url.includes("?") ? "&" : "?";
+
+        return fetch(`${API_BASE}${url}${separator}${queryString}`, {
             ...options,
             headers,
             credentials: "include",
@@ -62,9 +64,8 @@ export async function apiFetch(url, options = {}) {
     }
 
     if (!res.ok) {
-        throw new Error("Ошибка запроса: ${res.status}");
+        throw new Error(`Ошибка запроса: ${res.status}`);
     }
 
-    // всегда отдаём уже распарсенный JSON
     return res.json();
 }

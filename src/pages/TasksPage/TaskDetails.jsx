@@ -1,23 +1,37 @@
 import { useEffect, useState } from "react";
 import { apiFetch } from "@/components/functions/apiClient";
 import TimeCounter from "@/components/small-components/TimeCounter";
+import { useAuth } from "@/contexts/auth/useAuth";
 
 const TaskDetails = ({taskId}) => {
 
+    const { user } = useAuth();
     const [task, setTask] = useState([]);
+    const [author, setAuthor] = useState([]);
+    const [executor, setExecutor] = useState([]);
 
     useEffect(() => {
-        async function loadSortedTasks() {
+        if (!taskId) return;
+
+        async function loadTaskDetails() {
             try {
-                const res = await apiFetch(`/api/tasks/${taskId}/details`);
-                const data = await res;
-                setTask(data.task || []);
+                const data = await apiFetch(`/api/tasks/${taskId}/details`);
+                setTask(data.task || {});
+                setAuthor(data.author || {});
+                setExecutor(data.executor || {});
             } catch (err) {
                 console.error(err);
             }
-        };
+        }
         
-        loadSortedTasks();
+        loadTaskDetails();
+
+        document.querySelector(".task-details")?.classList.add("active");
+
+        return () => {
+            // при размонтировании убираем
+            document.querySelector(".task-details")?.classList.remove("active");
+        };
     }, [taskId]);
 
     return (
@@ -32,55 +46,94 @@ const TaskDetails = ({taskId}) => {
             </p>
             <p className="task-detail">
                 <label className="task-detail-label">Статус:</label> 
-                <span>{task.status.displayName}</span>
+                <span>{task.status}</span>
             </p>
-            <br/>
+
+            <br />
+
             <p className="task-detail">
                 <label className="task-detail-label">Автор:</label> 
-                <span>{task.author.name}</span>
+                <span>{author.name}</span>
             </p>
-            <p className="task-detail" th:if="${status == 'COMPLETED'}">
-                <label className="task-detail-label">Выполнил:</label> 
-                <span>task.executor.name</span>
-            </p>
-            <p className="task-detail" th:if="${status == 'IN_PROGRESS'}">
-                <label className="task-detail-label">Выполняющий:</label> 
-                <span>{task.executor.name}</span>
-            </p>
-            <br/>
+
+            {task.status === "COMPLETED" && (
+                <p className="task-detail">
+                    <label className="task-detail-label">Выполнил:</label> 
+                    <span>{executor.name}</span>
+                </p>
+            )}
+
+            {task.status === "IN_PROGRESS" && (
+                <p className="task-detail">
+                    <label className="task-detail-label">Выполняющий:</label> 
+                    <span>{executor.name}</span>
+                </p>
+            )}
+
+            <br />
+
             <p className="task-detail">
                 <label className="task-detail-label">Создана:</label> 
-                <span th:text="${#temporals.format(task.createdAt, 'HH:mm dd.MM.yyyy')}"></span>
+                <span>
+                    {task.createdAt
+                        ? new Date(task.createdAt).toLocaleString("ru-RU")
+                        : "-"}
+                </span>
             </p>
-            <p className="task-detail" th:if="${task.completed == null}">
-                <label className="task-detail-label">Дедлайн через:</label> 
-                <TimeCounter duration={task.duration}/>
-            </p>
-            <p className="task-detail" th:if="${task.completed != null}">
-                <label className="task-detail-label">Завершена:</label> 
-                <span th:text="${#temporals.format(task.completed, 'HH:mm dd.MM.yyyy')}"></span>
-            </p>
+
+            {!task.completed && (
+                <p className="task-detail">
+                    <label className="task-detail-label">Дедлайн через:</label> 
+                    <TimeCounter duration={task.duration} />
+                </p>
+            )}
+
+            {task.completed && (
+                <p className="task-detail">
+                    <label className="task-detail-label">Завершена:</label> 
+                    <span>{new Date(task.completed).toLocaleString("ru-RU")}</span>
+                </p>
+            )}
+
             <div className="button-actions">
-                <button th:if="${status == 'CANCELED' or status == 'NEW'}"
-                        th:data-task="${task.id}"
-                        className="btn-admin btn-admin-primary pickup-task-btn">
-                    <i className="fa-solid fa-download"></i>
-                </button>
-                <button th:if="${user == task.executor and status == 'IN_PROGRESS'}"
-                        th:data-task="${task.id}"
-                        className="btn-admin btn-admin-confirm complete-task-btn">
-                    <i className="fa-solid fa-check"></i>
-                </button>
-                <button th:if="${(user == task.executor and status == 'IN_PROGRESS') or (status == 'NEW')}"
-                        th:data-task="${task.id}"
-                        className="btn-admin btn-admin-danger cancel-task-btn">
-                    <i className="fa-solid fa-trash"></i>
-                </button>
-                <button className="btn-admin btn-admin-primary" 
-                        th:if="${user == executor and status == 'IN_PROGRESS'}">
-                    <i className="fa-solid fa-edit"></i>
-                </button>
-                <button className="btn-admin btn-admin-gold comment-btn" th:attr="task-id=${task.id}">
+                {(task.status === "CANCELED" || task.status === "NEW") && (
+                    <button
+                        data-task={task.id}
+                        className="btn-admin btn-admin-primary pickup-task-btn"
+                    >
+                        <i className="fa-solid fa-download"></i>
+                    </button>
+                )}
+
+                {user?.id === task.executorId && task.status === "IN_PROGRESS" && (
+                    <button
+                        data-task={task.id}
+                        className="btn-admin btn-admin-confirm complete-task-btn"
+                    >
+                        <i className="fa-solid fa-check"></i>
+                    </button>
+                )}
+
+                {((user?.id === task.executorId && task.status === "IN_PROGRESS") ||
+                    task.status === "NEW") && (
+                    <button
+                        data-task={task.id}
+                        className="btn-admin btn-admin-danger cancel-task-btn"
+                    >
+                        <i className="fa-solid fa-trash"></i>
+                    </button>
+                )}
+
+                {user?.id === executor.id && task.status === "IN_PROGRESS" && (
+                    <button className="btn-admin btn-admin-primary">
+                        <i className="fa-solid fa-edit"></i>
+                    </button>
+                )}
+
+                <button
+                    className="btn-admin btn-admin-gold comment-btn"
+                    data-task-id={task.id}
+                >
                     <i className="fa-solid fa-message"></i>
                 </button>
             </div>

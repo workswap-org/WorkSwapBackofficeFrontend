@@ -1,65 +1,104 @@
 import { apiFetch } from "@/components/functions/apiClient";
 import { useState, useEffect } from "react";
+import Avatar from "@/components/small-components/Avatar";
 
-const TaskTable = () => {
+const TaskTable = ({ onSelectTask }) => {
+
+    const [sort, setSort] = useState("created");
+    const [taskType, setTaskType] = useState("");
+    const [taskStatus, setTaskStatus] = useState("");
+
+    const [taskTypeList, setTaskTypeList] = useState([]);
+    const [taskStatusList, setTaskStatusList] = useState([]);
 
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
         async function loadSortedTasks() {
-            const type = document.getElementById("taskType")?.value || "";
-            const status = document.getElementById('taskStatus')?.value || "";
-            const sort = document.getElementById("sort")?.value || "date";
-
             const params = {};
 
-            if (type) params.type = type;
+            if (taskType) params.type = taskType;
             if (sort) params.sort = sort;
-            if (status) params.status = status;
-
-            const queryString = new URLSearchParams(params);
+            if (taskStatus) params.status = taskStatus;
 
             try {
-                const res = await apiFetch(`/api/tasks/get-tasks?${queryString.toString()}`);
+                const res = await apiFetch("/api/tasks/get-tasks", {}, params);
                 const data = await res;
                 setTasks(data.tasks || []);
             } catch (err) {
                 console.error(err);
             }
         };
-        
+    
         loadSortedTasks();
-    }, []);
+    }, [sort, taskStatus, taskType]);
+
+    useEffect(() => {
+    // Загружаем метаданные только один раз при загрузке страницы
+        async function loadSettings() {
+            try {
+                const res = await apiFetch(`/api/tasks/metadata`);
+                const data = await res;
+                setTaskTypeList(data.taskTypeList || []);
+                setTaskStatusList(data.taskStatusList || []);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        loadSettings();
+    }, []); 
 
     return (
         <div className="task-container">
             <div className="tasks-list-container">
                 <div className="tasks-list-header task-sort">
-                    <select name="sort" id="sort" onchange="loadSortedTasks()" required>
-                        <option value="created" selected>По дате создания</option>
+                    <select
+                        name="sort"
+                        id="sort"
+                        value={sort}
+                        onChange={(e) => setSort(e.target.value)}
+                        required
+                    >
+                        <option value="created">По дате создания</option>
                         <option value="deadline">По дате дедлайна</option>
                         <option value="completed">По дате выполнения</option>
                     </select>
 
-                    <select name="taskType" id="taskType" onchange="loadSortedTasks()" required>
-                        <option value="" selected>Тип задачи</option>
-                        <option th:each="type : ${taskTypes}"
-                                th:value="${type}"
-                                th:text="${type.getDisplayName()}">
-                        </option>
+                    <select
+                        name="taskType"
+                        id="taskType"
+                        value={taskType}
+                        onChange={(e) => setTaskType(e.target.value)}
+                        required
+                    >
+                        <option value="">Тип задачи</option>
+                        {taskTypeList.map((type) => (
+                            <option key={type} value={type}>
+                                {type}
+                            </option>
+                        ))}
                     </select>
 
-                    <select name="taskType" id="taskStatus" onchange="loadSortedTasks()" required>
-                        <option value="" selected>Статус</option>
-                        <option th:each="status : ${taskStatuses}"
-                                th:value="${status}"
-                                th:text="${status.getDisplayName()}">
-                        </option>
+                    <select
+                        name="taskStatus"
+                        id="taskStatus"
+                        value={taskStatus}
+                        onChange={(e) => setTaskStatus(e.target.value)}
+                        required
+                    >
+                        <option value="">Статус</option>
+                        {taskStatusList.map((status) => (
+                            <option key={status} value={status}>
+                                {status}
+                            </option>
+                        ))}
                     </select>
                 </div>
                 <div className="tasks-list" id="tasksTable">
                     <TasksList 
                         tasks={tasks}
+                        onSelectTask={onSelectTask} 
                     />
                 </div>
             </div>
@@ -67,7 +106,7 @@ const TaskTable = () => {
     );
 };
 
-const TasksList = ({ tasks, user }) => {
+const TasksList = ({ tasks, user, onSelectTask = () => {}}) => {
     if (!tasks || tasks.length === 0) {
         return (
             <table className="admin-table">
@@ -84,31 +123,35 @@ const TasksList = ({ tasks, user }) => {
         <table className="admin-table">
             <tbody>
                 {tasks.map(task => (
-                    <tr key={task.id} className="task-item" data-task-id={task.id}>
+                    <tr key={task.id} 
+                        className="task-item" 
+                        data-task-id={task.id}
+                        onClick={() => onSelectTask(task.id)}
+                    >
                         <td className={
-                            task.status.displayName === "Новая" ? "status-new" :
-                            task.status.displayName === "В процессе" ? "status-progress" :
-                            task.status.displayName === "Завершена" ? "status-done" :
+                            task.status === "Новая" ? "status-new" :
+                            task.status === "В процессе" ? "status-progress" :
+                            task.status === "Завершена" ? "status-done" :
                             "status-cancelled"
                         }>
-                            {task.status.displayName === "Новая" && (
+                            {task.status === "Новая" && (
                                 <i className="fa-solid fa-file-circle-plus"></i>
                             )}
-                            {task.status.displayName === "В процессе" && (
+                            {task.status === "В процессе" && (
                                 <i className="fa-solid fa-timer"></i>
                             )}
-                            {task.status.displayName === "Завершена" && (
+                            {task.status === "Завершена" && (
                                 <i className="fa-solid fa-badge-check"></i>
                             )}
-                            {task.status.displayName === "Отменена" && (
+                            {task.status === "Отменена" && (
                                 <i className="fa-solid fa-ban"></i>
                             )}
                         </td>
                         <td>#{task.id}</td>
                         <td>{task.name}</td>
-                        <td>{task.taskType?.displayName}</td>
+                        <td>{task.taskType}</td>
                         <td>
-                            {task.status.code !== "COMPLETED" ? (
+                            {task.status !== "Завершена" ? (
                                 <span>{/* сюда можно вставить твой timeCounter компонент */}</span>
                             ) : (
                                 <Avatar

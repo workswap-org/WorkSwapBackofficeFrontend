@@ -159,6 +159,12 @@
     display: block;
 }
 
+.task-comments {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
 .task-comments-container {
     display: flex; 
     flex-direction: column; 
