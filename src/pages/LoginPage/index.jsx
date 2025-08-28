@@ -20,10 +20,10 @@ const LoginPage = () => {
     const handleGoogleLogin = () => {
         // Получаем откуда пользователь пришёл (если есть)
         const params = new URLSearchParams(window.location.search);
-        const redirect = params.get("redirect") || "/"; // дефолт — корень
+        const redirect = params.get("redirect") || `${window.location.origin}/`; // дефолт — корень
 
         // Добавляем redirect к ссылке OAuth
-        window.location.href = `${API_BASE}/api/authorization/authorize?redirect=${encodeURIComponent(redirect)}`;
+        window.location.href = `${API_BASE}/api/auth/authorize?redirect=${encodeURIComponent(redirect)}`;
     };
 
     return (

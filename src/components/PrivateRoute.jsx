@@ -7,7 +7,8 @@ const PrivateRoute = ({ children }) => {
     const location = useLocation();
 
     if (!accessToken) {
-        return <Navigate to={`/login?redirect=${encodeURIComponent(location.pathname)}`} replace />;
+        const fullRedirect = `${window.location.origin}${location.pathname}`;
+        return <Navigate to={`/login?redirect=${encodeURIComponent(fullRedirect)}`} replace />;
     }
 
     return children;
