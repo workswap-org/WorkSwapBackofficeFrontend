@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { apiFetch } from "@/components/functions/apiClient";
 import TimeCounter from "@/components/small-components/TimeCounter";
-import { useAuth } from "@/contexts/auth/useAuth";
+import { useAuth } from "@/contexts/auth/AuthContext";
 
 const TaskDetails = ({taskId}) => {
 

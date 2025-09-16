@@ -1,7 +1,7 @@
 import { useLocation, Outlet } from "react-router-dom";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
-import { useAuth } from "@/contexts/auth/useAuth";
+import { useAuth } from "@/contexts/auth/AuthContext";
 import "@/css/pages/main-admin-page.css";
 import { apiFetch } from "@/components/functions/apiClient";
 

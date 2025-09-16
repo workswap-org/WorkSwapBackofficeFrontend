@@ -1,7 +1,7 @@
 import "@/css/pages/categories-page.css";
 import { useEffect, useState } from "react";
 import CategoryTree from "./CategoryTree";
-import { useAuth } from "@/contexts/auth/useAuth";
+import { useAuth } from "@/contexts/auth/AuthContext";
 import { apiFetch } from "@/components/functions/apiClient";
 
 const CategoriesPage = () => {

@@ -1,4 +1,4 @@
-import { useAuth } from "@/contexts/auth/useAuth";
+import { useAuth } from "@/contexts/auth/AuthContext";
 import { useEffect, useState } from "react";
 import { apiFetch } from "@/components/functions/apiClient";
 import PriceTypes from "@/components/small-components/PriceTypes";
