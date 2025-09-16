@@ -1,4 +1,4 @@
-import { apiFetch } from "@/components/functions/apiClient";
+import { apiFetch } from "@/lib/apiClient";
 import { useState, useEffect } from "react";
 import Avatar from "@/components/small-components/Avatar";
 

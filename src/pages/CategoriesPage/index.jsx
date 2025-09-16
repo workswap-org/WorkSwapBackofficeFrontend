@@ -1,8 +1,8 @@
 import "@/css/pages/categories-page.css";
 import { useEffect, useState } from "react";
 import CategoryTree from "./CategoryTree";
-import { useAuth } from "@/contexts/auth/AuthContext";
-import { apiFetch } from "@/components/functions/apiClient";
+import { useAuth } from "@/lib/contexts/auth/AuthContext";
+import { apiFetch } from "@/lib/apiClient";
 
 const CategoriesPage = () => {
     const { accessToken } = useAuth();

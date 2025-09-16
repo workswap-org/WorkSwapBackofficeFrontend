@@ -1,6 +1,6 @@
-import { useAuth } from "@/contexts/auth/AuthContext";
+import { useAuth } from "@/lib/contexts/auth/AuthContext";
 import { useEffect, useState } from "react";
-import { apiFetch } from "@/components/functions/apiClient";
+import { apiFetch } from "@/lib/apiClient";
 import PriceTypes from "@/components/small-components/PriceTypes";
 import DeleteBtn from "@/components/buttons/DeleteBtn";
 

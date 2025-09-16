@@ -10,6 +10,7 @@
 }
 .terms-checkbox input {
     margin-right: 10px;
+    width: auto;
 }
 .btn-google {
     background: #4285F4;
@@ -22,8 +23,9 @@
     width: 100%;
     margin-top: 10px;
 }
+
 .btn-google:disabled {
-    background: #cccccc;
+    background: #98b7f0;
     cursor: not-allowed;
 }
 
@@ -31,15 +33,11 @@
     margin: 1rem auto;
 }
 
-.btn {
-    margin-bottom: 0.5rem;
-}
-
-body {
+.login-body {
     margin: 0;
     padding: 0;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #8db5fb, #d25eff);
+    background: linear-gradient(to right, var(--login-bg-start), var(--login-bg-end));
     height: 100vh;
     display: flex;
     align-items: center;
@@ -47,17 +45,17 @@ body {
 }
 
 .login-container {
-    background-color: #ffffff;
     padding: 40px;
     border-radius: 16px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
     text-align: center;
     max-width: 400px;
-    width: 100%;
+    width: fit-content;
+    height: auto;
 }
 
 .login-container h2 {
     margin-bottom: 24px;
-    color: #333;
+    color: var(--text-color);
     font-size: 28px;
 }
