@@ -18,7 +18,7 @@ export default defineConfig({
     server: {
         host: '0.0.0.0',
         allowedHosts: [
-            'workswap.org'
+            'dash.workswap.org'
         ],
         port: 30008,
         proxy: {
