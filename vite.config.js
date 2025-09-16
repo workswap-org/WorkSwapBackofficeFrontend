@@ -16,12 +16,23 @@ export default defineConfig({
         },
     },
     server: {
+        host: '0.0.0.0',
+        allowedHosts: [
+            'workswap.org'
+        ],
+        port: 30008,
         proxy: {
             "/proxy": {
-                target: "http://localhost:8083", // твой backend
+                target: "https://api.workswap.org",
                 changeOrigin: true,
                 secure: false,
             },
         },
     },
+    define: {
+        global: 'window'
+    },
+    preview: {
+        port: 8082
+    }
 })
