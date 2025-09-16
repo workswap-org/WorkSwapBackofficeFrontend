@@ -1,4 +1,4 @@
-import "#/css/pages/categories-page.css";
+import "@/css/pages/categories-page.css";
 
 const buildCategoryTree = (categories) => {
     const map = new Map();

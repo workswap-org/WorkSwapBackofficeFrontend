@@ -2,7 +2,7 @@ import { useLocation, Outlet } from "react-router-dom";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import { useAuth } from "@/contexts/auth/useAuth";
-import "#/css/pages/main-admin-page.css";
+import "@/css/pages/main-admin-page.css";
 import { apiFetch } from "@/components/functions/apiClient";
 
 export default function Layout() {

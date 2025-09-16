@@ -1,13 +1,18 @@
 import { Routes, Route } from "react-router-dom";
+
 import Layout from "./layouts/Layout";
 
 import CategoriesPage from "./pages/CategoriesPage";
 import DashboardPage from "./pages/DashboardPage";
 import TasksPage from "./pages/TasksPage";
 
+/* Страницы логина */
+import LoginPage from "./pages/login/LoginPage";
+import RegisterPage from "./pages/login/RegisterPage";
+import LoginSuccessPage from "./pages/login/LoginSuccessPage";
+import LogoutPage from "./pages/login/LogoutPage";
+
 import PrivateRoute from "./components/PrivateRoute";
-import LoginPage from "./pages/LoginPage";
-import LoginSuccessPage from "./pages/LoginSuccessPage";
 import RouteLogger from "./components/logging/RouteLogger";
 import { Navigate } from "react-router-dom";
 
@@ -17,7 +22,10 @@ const AppRouter = () => {
             <RouteLogger />
             <Routes>
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login/success" element={<LoginSuccessPage />} />
+                <Route path="/logout" element={<LogoutPage />} />
+                
 
                 <Route
                     path="/"

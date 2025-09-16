@@ -1,4 +1,4 @@
-import "#/css/pages/categories-page.css";
+import "@/css/pages/categories-page.css";
 import { useEffect, useState } from "react";
 import CategoryTree from "./CategoryTree";
 import { useAuth } from "@/contexts/auth/useAuth";
