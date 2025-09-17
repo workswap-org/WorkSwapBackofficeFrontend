@@ -83,7 +83,7 @@
 }
 
 .task-details {
-    background-color: var(--color-bg-body);
+    background-color: var(--background-l1);
     padding: 1rem;
     border: 1px solid var(--border-color);
     border-radius: var(--radius);
@@ -119,7 +119,7 @@
 
 .task-comment-card {
     min-width: 0;
-    background-color: var(--color-bg-body);
+    background-color: var(--background-l1);
     padding: 1rem;
     border: 1px solid var(--border-color);
     border-radius: var(--radius);

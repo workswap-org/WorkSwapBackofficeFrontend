@@ -4,11 +4,13 @@ import Header from "@/components/Header";
 import { useAuth } from "@/lib/contexts/auth/AuthContext";
 import "@/css/pages/main-admin-page.css";
 import { apiFetch } from "@/lib/apiClient";
+import ActivePageContext from "@/lib/contexts/ActivePageContext";
+import { useState } from "react";
 
 export default function Layout() {
     const location = useLocation();
-    /* console.log(location); */
     const { user } = useAuth();
+    const [sidebarVisible, setSidebarVisible] = useState(false);
 
     const activePage = (() => {
         if (location.pathname.startsWith("/dashboard")) return "dashboard";
@@ -24,24 +26,34 @@ export default function Layout() {
         return "dashboard";
     })();
 
+    function toggleSidebar() {
+        setSidebarVisible(!sidebarVisible);
+    }
+    
     const handleLogout = () => {
         apiFetch("/logout", { method: "POST", credentials: "include" }).then(() => {});
     };
 
     return (
-        <div className="admin-layout">
-            <Sidebar />
-            <main className="admin-main">
-                <Header
-                    activePage={activePage}
-                    user={user || undefined}
-                    onLogout={handleLogout}
+        <ActivePageContext.Provider value={{ activePage }}>
+            <div className="admin-layout">
+                <Sidebar 
+                    sidebarVisible={sidebarVisible}
+                    setSidebarVisible={setSidebarVisible}
                 />
-                <Outlet />
-            </main>
-            {/* Глобальные модалки можно держать тут */}
-            {/* <ErrorModal /> */}
-            {/* <AdminModalPortal /> */}
-        </div>
+                <main className="admin-main">
+                    <Header
+                        activePage={activePage}
+                        user={user || undefined}
+                        onLogout={handleLogout}
+                        toggleSidebar={toggleSidebar}
+                    />
+                    <Outlet />
+                </main>
+                {/* Глобальные модалки можно держать тут */}
+                {/* <ErrorModal /> */}
+                {/* <AdminModalPortal /> */}
+            </div>
+        </ActivePageContext.Provider>
     );
 }

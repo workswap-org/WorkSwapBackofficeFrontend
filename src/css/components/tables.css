@@ -2,7 +2,7 @@
 .admin-table {
     width: 100%;
     border-collapse: collapse;
-    background: var(--color-bg-body);
+    background: var(--background-l1);
     border-radius: var(--radius);
     box-shadow: 0 2px 4px var(--shadow-color);
     margin-bottom: 1rem;

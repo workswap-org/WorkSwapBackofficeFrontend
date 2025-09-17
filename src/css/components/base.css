@@ -25,7 +25,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    scrollbar-color: var(--border-color) var(--color-bg-body);
+    scrollbar-color: var(--border-color) var(--background-l1);
 }
 
 html {
@@ -77,7 +77,7 @@ li {
 }
 
 .card {
-    background: var(--color-bg-body);
+    background: var(--background-l1);
     border-radius: var(--radius);
     box-shadow: 0 2px 4px var(--shadow-color);
     overflow: hidden;
@@ -92,6 +92,7 @@ li {
     padding: 1rem;
     flex: 1;
     min-height: 0;
+    height: fit-content;
 }
 
 .card-title {

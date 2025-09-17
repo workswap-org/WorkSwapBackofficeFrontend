@@ -190,6 +190,11 @@
     position: absolute;
     transform: translateY(-50px);
     display: inline-flex;
-    justify-content: space-between;
+    gap: 0.5rem;
     width: 100%;
+}
+
+.btn-actions-group {
+    display: inline-flex;
+    gap: 0.5rem;
 }

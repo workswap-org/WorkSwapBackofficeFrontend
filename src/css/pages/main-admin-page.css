@@ -41,13 +41,21 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: var(--color-bg-body);
+    padding: 0.5rem 2rem;
+    background-color: var(--background-l1);
     box-shadow: 0 2px 4px var(--shadow-color);
     position: sticky;
     top: 0;
     z-index: 100;
     margin-bottom: 2rem;
+}
+
+.admin-header h1{
+    white-space: nowrap;
+}
+
+.mobile-menu-btn {
+    display: none;
 }
 
 .admin-logo {
@@ -110,7 +118,7 @@ h2 {
 }
 
 .stat-card {
-    background: var(--color-bg-body);
+    background: var(--background-l1);
     border-radius: var(--radius);
     padding: 1.5rem;
     box-shadow: 0 2px 4px var(--shadow-color);
@@ -169,7 +177,7 @@ h2 {
     border-radius: var(--radius);
     font-size: 1rem;
     color: var(--text-color);
-    background-color: var(--color-bg-body);
+    background-color: var(--background-l1);
 }
 
 .admin-form-control:focus {
@@ -180,6 +188,20 @@ h2 {
 
 /* Адаптивность */
 @media (max-width: 992px) {
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+    .admin-user {
+        display: none;
+        align-items: center;
+        gap: 1rem;
+    }
+
     .admin-layout {
         flex-direction: column;
     }
@@ -187,7 +209,16 @@ h2 {
     .sidebar {
         width: 100%;
         height: auto;
-        position: static;
+        position: absolute;
+        z-index: 101;
+        visibility: hidden;
+        transform: translateX(100%);
+        transition: all 0.2s ease;
+    }
+
+    .sidebar.show {
+        visibility: visible;
+        transform: translateX(0);
     }
 
     .admin-nav {
@@ -198,16 +229,24 @@ h2 {
     .admin-nav-item {
         flex: 1 0 auto;
     }
-}
-
-@media (max-width: 768px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
 
     .admin-header {
-        flex-direction: column;
-        gap: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .admin-header h1{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 1.3rem;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .admin-main {
         padding: 1rem;
+        max-height: fit-content;
+        height: fit-content;
     }
 }

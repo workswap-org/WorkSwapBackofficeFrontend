@@ -14,7 +14,7 @@
     border-radius: 0.5rem;
     border: 1px solid transparent;
 
-    display: inline-block;
+    display: inline-flex;
     justify-content: space-between;
 }
 
@@ -40,7 +40,6 @@
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    margin: 0.3rem;
     border-bottom: 1px dashed var(--border-color);
 }
 
@@ -49,5 +48,58 @@
     flex-direction: row;
     padding: 1rem;
     flex: 1;
+    gap: 0.5rem;
     min-height: 0;
+    position: relative;
+}
+
+.selected-role {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.3rem;
+    padding: 0.5rem;
+    border-bottom: 2px dashed var(--border-color);
+}
+
+@media (max-width: 600px) {
+    .roles-list {
+        transform: translateX(-120%);
+        position: absolute;
+        z-index: 100;
+        background-color: var(--background-l1);
+        width: 100%;
+        border-width: 0;
+        transition: all 0.2s ease;
+        padding: 0;
+    }
+
+    .page-container {
+        padding: 1rem 0;
+    }
+
+    .permissions-list {
+        overflow-x: hidden;
+    }
+
+    .permission-item {
+        padding: 1rem 0.5rem;
+        gap: 1rem;
+        justify-content: space-between;
+    }
+
+    .role-item {
+        font-size: 1.1rem;
+        justify-content: center;
+        width: auto;
+    }
+
+    .roles-list.show {
+        transform: translateX(0);
+    }
+
+    .selected-role {
+        display: flex;
+    }
 }

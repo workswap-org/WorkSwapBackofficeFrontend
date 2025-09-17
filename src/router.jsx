@@ -5,6 +5,7 @@ import Layout from "./layouts/Layout";
 import CategoriesPage from "./pages/CategoriesPage";
 import DashboardPage from "./pages/DashboardPage";
 import TasksPage from "./pages/TasksPage";
+import PermissionsPage from "./pages/PermissionsPage";
 
 /* Страницы логина */
 import LoginPage from "./pages/login/LoginPage";
@@ -13,6 +14,7 @@ import LoginSuccessPage from "./pages/login/LoginSuccessPage";
 import LogoutPage from "./pages/login/LogoutPage";
 
 import PrivateRoute from "./components/PrivateRoute";
+import AuthGuard from "@/lib/contexts/auth/AuthGuard";
 import RouteLogger from "./components/logging/RouteLogger";
 import { Navigate } from "react-router-dom";
 
@@ -25,21 +27,21 @@ const AppRouter = () => {
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login/success" element={<LoginSuccessPage />} />
                 <Route path="/logout" element={<LogoutPage />} />
-                
 
-                <Route
-                    path="/"
-                    element={
-                        <PrivateRoute>
-                            <Layout />
-                        </PrivateRoute>
-                    }
-                >
-                    <Route index element={<Navigate to="/dashboard" replace />} />
+                {/* Один общий Layout */}
+                <Route path="/" element={<AuthGuard />}>
+                    <Route path="/" element={<Layout />}>
+                        {/* публичные страницы */}
 
-                    <Route path="categories" element={<CategoriesPage />} />
-                    <Route path="dashboard" element={<DashboardPage />} />
-                    <Route path="tasks" element={<TasksPage />} />
+                        <Route element={<PrivateRoute />}>
+                            <Route index element={<Navigate to="/dashboard" replace />} />
+
+                            <Route path="categories" element={<CategoriesPage />} />
+                            <Route path="permissions" element={<PermissionsPage />} />
+                            <Route path="dashboard" element={<DashboardPage />} />
+                            <Route path="tasks" element={<TasksPage />} />
+                        </Route>
+                    </Route>
                 </Route>
             </Routes>
         </>

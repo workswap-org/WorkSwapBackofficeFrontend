@@ -39,7 +39,7 @@
 
 /* Стили для формы отзыва */
 .review-form {
-    background: var(--color-bg-body);
+    background: var(--background-l1);
     border-radius: var(--radius);
     padding: 1.5rem;
     box-shadow: 0 2px 8px var(--shadow-color);
@@ -75,7 +75,7 @@
 }
 
 .reviews-section {
-    background: var(--color-bg-body);
+    background: var(--background-l1);
     border-radius: var(--radius);
     padding: 1.5rem;
     box-shadow: 0 2px 8px var(--shadow-color);
@@ -110,7 +110,7 @@
 }
 /* Сообщение для неавторизованных пользователей */
 .login-prompt {
-    background: var(--color-bg-body);
+    background: var(--background-l1);
     border-radius: var(--radius);
     padding: 1.5rem;
     box-shadow: 0 2px 8px var(--shadow-color);
@@ -141,7 +141,7 @@
 
 .review-form button[type="submit"] {
     background-color: var(--primary);
-    color: var(--color-bg-body);
+    color: var(--background-l1);
     border: none;
     border-radius: var(--radius);
     padding: 0.75rem 1.5rem;

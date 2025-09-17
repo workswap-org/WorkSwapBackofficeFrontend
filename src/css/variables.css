@@ -43,24 +43,36 @@
 
     /*Изменяемые темой цвета*/
 
-    --color-bg-body: #ffffff;
+    --background-l1: #ffffff;
+    --background-l2: #e7e4e4;
     --background: #d8dfdf;
     --text-color: #1f2937;
     --border-color: #d6d5d5;
 
+    --danger-dark: #d83f3f;
     --primary-light: #9396ff;
+    --primary-2xlight: #babdff;
     --primary: #6366f1;
     --primary-dark: #4f46e5;
+
+    --login-bg-start: #8db5fb;
+    --login-bg-end: #d25eff;
 }
 
 [data-theme="dark"] {
     --background: #1f1f1f;
-    --color-bg-body: #28292a;
+    --background-l1: #28292a;
+    --background-l2: #393a3a;
     --text-color: #e9e9e9;
     --accent-color: #66b2ff;
     --border-color: #525252;
 
+    --danger-dark: #e9a3a3;
     --primary-light: #4a4e94;
+    --primary-2xlight: #2e3392;
     --primary: #7377bd;
     --primary-dark: #534e9c;
+
+    --login-bg-start: #1161eb;
+    --login-bg-end: #a809e7;
 }

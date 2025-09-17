@@ -1,3 +1,4 @@
+import { useActivePage } from "../lib/hooks/contexts/useActivePage";
 import Avatar from "./small-components/Avatar";
 
 const pageTitles = {
@@ -13,7 +14,10 @@ const pageTitles = {
   permissions: "Роли и разрешения",
 };
 
-const Header = ({ activePage, user, onLogout }) => {
+const Header = ({ user, onLogout, toggleSidebar }) => {
+
+    const { activePage } = useActivePage();
+    
     return (
       <header className="admin-header">
             <h1>{pageTitles[activePage]}</h1>
@@ -25,11 +29,11 @@ const Header = ({ activePage, user, onLogout }) => {
                     if (onLogout) onLogout();
                 }}
             >
-            <i
-                className="fa fa-sign-out fa-lg"
-                aria-hidden="true"
-                style={{ transform: "rotate(180deg)" }}
-            ></i>
+                <i
+                    className="fa fa-sign-out fa-lg"
+                    aria-hidden="true"
+                    style={{ transform: "rotate(180deg)" }}
+                ></i>
             </button>
 
             <div className="admin-user">
@@ -39,6 +43,10 @@ const Header = ({ activePage, user, onLogout }) => {
                     size={40}          // размер аватара, например 40px
                     className="p40-avatar" // дополнительные классы, если нужны
                 />
+            </div>
+
+            <div className="mobile-menu-btn" onClick={() => toggleSidebar()}>
+                <i className="fa-solid fa-bars fa-xl"></i>
             </div>
         </header>
     );
