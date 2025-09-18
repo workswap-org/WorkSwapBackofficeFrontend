@@ -41,6 +41,20 @@
     flex-direction: row;
     gap: 2rem;
     border-bottom: 1px dashed var(--border-color);
+    justify-content: space-between;
+    position: relative;
+}
+
+.permission-comment {
+    position: absolute;
+    bottom: 0;
+    font-size: 0.8rem;
+    color: var(--text-color-l1);
+}
+
+.perm-toggler {
+    position: absolute;
+    right: 3rem;
 }
 
 .page-container {
@@ -60,7 +74,27 @@
     font-weight: 700;
     font-size: 1.3rem;
     padding: 0.5rem;
+    height: 50px;
     border-bottom: 2px dashed var(--border-color);
+}
+
+.permission-actions-btn {
+    color: var(--text-color);
+    background-color: transparent;
+    border-width: 0;
+    border-radius: 8px;
+    padding: 0.2rem 0.2rem;
+}
+
+.permission-actions-card {
+    position: absolute;
+    border-radius: 8px;
+    background-color: var(--background);
+    border: 2px solid var(--border-color);
+    bottom: -2rem;
+    right: 0;
+    padding: 0.5rem 0.8rem;
+    z-index: 100;
 }
 
 @media (max-width: 600px) {
@@ -101,5 +135,9 @@
 
     .selected-role {
         display: flex;
+    }
+
+    .perm-toggler {
+        right: 2rem;
     }
 }

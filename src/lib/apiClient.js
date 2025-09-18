@@ -14,6 +14,7 @@ async function refreshToken() {
         })
             .then(res => {
                 if (!res.ok) throw new Error("Refresh failed");
+                localStorage.removeItem("accessToken")
                 return res.json();
             })
             .then(data => {

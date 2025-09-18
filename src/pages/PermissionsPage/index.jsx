@@ -30,6 +30,7 @@ const PermissionsPage = () => {
 
         async function loadPerms() {
             const data = await apiFetch('/api/permissions');
+            console.log(data)
             setPermissions(data.permissions);
         }
 
@@ -67,7 +68,7 @@ const PermissionsPage = () => {
                             {selectedRole.name}
                         </div>
                     ) : (
-                        <br/>
+                        <div className="selected-role"></div>
                     )}
                     
                     <div className="page-container">

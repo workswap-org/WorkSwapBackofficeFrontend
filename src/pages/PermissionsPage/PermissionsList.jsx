@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { apiFetch } from "@/lib/apiClient";
+import PermissionItem from "./PermissionItem";
 
 const PermissionsList = ( {permissions, selectedRole, setSaving} ) => {
 
@@ -44,23 +45,12 @@ const PermissionsList = ( {permissions, selectedRole, setSaving} ) => {
     return (
         <div className="permissions-list" id="permissionsList">
             {permissions.map((perm) => (
-                <div className="permission-item" key={perm.id} >
-                    <span>{perm.name}</span>
-                    {selectedRole && (
-                        <label className="switch perm-toggle-label">
-                            <input 
-                                className="perm-toggle" 
-                                type="checkbox"
-                                checked={checkedPermissions.some(p => p.id === perm.id)}
-                                onChange={() => changeRolePerms(perm)}
-                            />
-                            <span className="slider">
-                                <i className="fa-solid fa-check" style={{color: 'lightgreen'}}></i>
-                                <i className="fa-solid fa-xmark" style={{color: 'rgb(184, 94, 94)'}}></i>
-                            </span>
-                        </label>
-                    )}
-                </div>
+                <PermissionItem 
+                    permission={perm} 
+                    changeRolePerms={changeRolePerms} 
+                    selectedRole={selectedRole}
+                    checkedPermissions={checkedPermissions}
+                />
             ))}
         </div>
     );
