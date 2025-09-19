@@ -10,7 +10,7 @@ const RolesList = ({
         <div className={`roles-list ${roleListVisible ? "show" : ""}`}>
             {roles.map((role) => (
                 <div 
-                    className="role-item" 
+                    className={`role-item ${role.id == selectedRole?.id ? "active" : ""}`} 
                     key={role.id}
                     onClick={() => selectRole(role)}
                 >

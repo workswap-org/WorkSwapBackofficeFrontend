@@ -52,6 +52,22 @@
     color: var(--text-color-l1);
 }
 
+input.permission-name {
+    border: 1px solid var(--border-color);
+    border-radius: 0.3rem;
+    padding: 0.2rem;
+    width: 50%;
+    color: var(--text-color);
+    background-color: transparent;
+}
+
+input.permission-comment {
+    border: 1px solid var(--border-color);
+    border-radius: 0.3rem;
+    width: 50%;
+    background-color: transparent;
+}
+
 .perm-toggler {
     position: absolute;
     right: 3rem;

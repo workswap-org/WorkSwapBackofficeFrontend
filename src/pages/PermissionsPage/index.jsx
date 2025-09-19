@@ -30,7 +30,6 @@ const PermissionsPage = () => {
 
         async function loadPerms() {
             const data = await apiFetch('/api/permissions');
-            console.log(data)
             setPermissions(data.permissions);
         }
 

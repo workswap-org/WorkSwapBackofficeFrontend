@@ -15,7 +15,7 @@ const LogoutPage = () => {
         } catch (e) {
             console.error("Logout failed", e);
         } finally {
-            navigate("/catalog");
+            navigate("/");
             setAccessToken(null);
             setUser(null);
             localStorage.removeItem("accessToken");
@@ -27,9 +27,7 @@ const LogoutPage = () => {
     }, [logout])
     
     return (
-        <>
-            {/* LogoutPage component */}
-        </>
+        <></>
     );
 };
 

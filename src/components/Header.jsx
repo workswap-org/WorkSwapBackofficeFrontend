@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useActivePage } from "../lib/hooks/contexts/useActivePage";
 import Avatar from "./small-components/Avatar";
 
@@ -14,7 +15,7 @@ const pageTitles = {
   permissions: "Роли и разрешения",
 };
 
-const Header = ({ user, onLogout, toggleSidebar }) => {
+const Header = ({ user, toggleSidebar }) => {
 
     const { activePage } = useActivePage();
     
@@ -22,19 +23,16 @@ const Header = ({ user, onLogout, toggleSidebar }) => {
       <header className="admin-header">
             <h1>{pageTitles[activePage]}</h1>
 
-            <button
+            <Link
                 className="logout-btn"
-                onClick={(e) => {
-                    e.preventDefault();
-                    if (onLogout) onLogout();
-                }}
+                to="/logout"
             >
                 <i
                     className="fa fa-sign-out fa-lg"
                     aria-hidden="true"
                     style={{ transform: "rotate(180deg)" }}
                 ></i>
-            </button>
+            </Link>
 
             <div className="admin-user">
                 <span>{user?.name || "Администратор"}</span>

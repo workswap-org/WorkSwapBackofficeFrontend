@@ -10,6 +10,7 @@ const PermissionActions = ({editMode, setEditMode}) => {
 
     function toggleEditMode() {
         setEditMode(!editMode)
+        setActionsCard(false);
     }
 
     return (

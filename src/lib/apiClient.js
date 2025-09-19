@@ -5,7 +5,7 @@ import i18n from '@/lib/i18n';
 let isRefreshing = false;
 let refreshPromise = null;
 
-async function refreshToken() {
+async function refreshToken(setAccessToken) {
     if (!isRefreshing) {
         isRefreshing = true;
         refreshPromise = fetch(`${API_BASE}/api/auth/refresh`, {
@@ -22,6 +22,7 @@ async function refreshToken() {
             .then(data => {
                 if (!data.accessToken) throw new Error("No access token in response");
                 localStorage.setItem("accessToken", data.accessToken);
+                setAccessToken(data.accessToken);
                 return data.accessToken;
             })
             .finally(() => {
@@ -31,11 +32,8 @@ async function refreshToken() {
     return refreshPromise;
 }
 
-export async function apiFetch(url, options = {}, extraParams = {}) {
+export async function apiFetch(url, options = {}, extraParams = {}, setAccessToken) {
     let token = localStorage.getItem("accessToken");
-    if (!token) {
-        token = await refreshToken();
-    }
 
     const makeRequest = async (authToken) => {
 
@@ -62,7 +60,7 @@ export async function apiFetch(url, options = {}, extraParams = {}) {
 
     if (res.status === 401) {
         try {
-            token = await refreshToken();
+            token = await refreshToken(setAccessToken);
             res = await makeRequest(token);
         } catch (e) {
             console.error("Не удалось обновить токен:", e);

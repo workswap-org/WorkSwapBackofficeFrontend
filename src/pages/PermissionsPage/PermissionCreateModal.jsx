@@ -14,15 +14,15 @@ const PermissionCreateModal = ({setPermissionCreateModal}) => {
     }
 
     return (
-        <div class="modal-overlay">
-            <div class="admin-modal">
-                <div class="admin-modal-content">
-                    <span class="close" onClick={() => setPermissionCreateModal(false)}>
+        <div className="modal-overlay">
+            <div className="admin-modal">
+                <div className="admin-modal-content">
+                    <span className="close" onClick={() => setPermissionCreateModal(false)}>
                         <i className="fa-solid fa-xmark"></i>
                     </span>
                     <h2>Создать Разрешение</h2>
                     <div style={{gap: '0.5rem'}}>                  
-                        <div class="form-group">
+                        <div className="form-group">
                             <label for="permissionName">Имя:</label>
                             <p for="permissionName">(на англиском, заглавными буквами)</p>
                             <input
@@ -35,8 +35,8 @@ const PermissionCreateModal = ({setPermissionCreateModal}) => {
                             />
                         </div>
 
-                        <div class="form-actions" onClick={() => createPermission()}>
-                            <button class="btn btn-outline-primary">Сохранить</button>
+                        <div className="form-actions" onClick={() => createPermission()}>
+                            <button className="btn btn-outline-primary">Сохранить</button>
                         </div>
                     </div>
                 </div>

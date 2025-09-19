@@ -14,15 +14,15 @@ const RoleCreateModal = ({setRoleCreateModal}) => {
     }
 
     return (
-        <div class="modal-overlay">
-            <div class="admin-modal">
-                <div class="admin-modal-content">
-                    <span class="close" onClick={() => setRoleCreateModal(false)}>
+        <div className="modal-overlay">
+            <div className="admin-modal">
+                <div className="admin-modal-content">
+                    <span className="close" onClick={() => setRoleCreateModal(false)}>
                         <i className="fa-solid fa-xmark"></i>
                     </span>
                     <h2>Создать роль</h2>
                     <div style={{gap: '0.5rem'}}>                  
-                        <div class="form-group">
+                        <div className="form-group">
                             <label for="roleName">Имя:</label>
                             <p for="roleName">(на англиском, заглавными буквами)</p>
                             <input
@@ -35,8 +35,8 @@ const RoleCreateModal = ({setRoleCreateModal}) => {
                             />
                         </div>
 
-                        <div class="form-actions" onClick={() => createRole()}>
-                            <button class="btn btn-outline-primary">Сохранить</button>
+                        <div className="form-actions" onClick={() => createRole()}>
+                            <button className="btn btn-outline-primary">Сохранить</button>
                         </div>
                     </div>
                 </div>
