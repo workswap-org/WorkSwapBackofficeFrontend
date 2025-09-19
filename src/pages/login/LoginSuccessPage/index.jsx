@@ -1,40 +1,25 @@
 // LoginSuccessPage.jsx
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAuth } from "@/lib/contexts/auth/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
-import { API_BASE } from "@/api/config";
 
 const LoginSuccessPage = () => {
-    const { setAccessToken, user } = useAuth();
+    const { user, loadUser } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [redirect, setRedirect] = useState("")
+    useEffect(() => {
+        loadUser();
+    }, [loadUser]);
 
     useEffect(() => {
-        fetch(`${API_BASE}/api/auth/refresh`, {
-            method: "POST",
-            credentials: "include",
-            headers: { 'Content-Type': 'application/json' }
-        })
-        .then(res => {
-            return res.json();
-        })
-        .then(data => {
-            setAccessToken(data.accessToken);
-
+        if (user) {
             const from = new URLSearchParams(location.search).get("redirect") || "/";
-            setRedirect(from)
-        })
-        .catch(err => console.error("Auth failed:", err));
-    }, [setAccessToken, navigate, location.search]);
-
-    useEffect(() => {
-        if (redirect && user) {
-            navigate(redirect, { replace: true })
+            console.log("from ", from);
+            navigate(from, { replace: true });
         }
-    }, [navigate, redirect, user])
-
+    }, [location.search, navigate, user]);
+    
     return <></>;
 };
 

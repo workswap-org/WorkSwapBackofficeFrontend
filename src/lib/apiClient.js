@@ -13,8 +13,10 @@ async function refreshToken() {
             credentials: "include",
         })
             .then(res => {
-                if (!res.ok) throw new Error("Refresh failed");
-                localStorage.removeItem("accessToken")
+                if (!res.ok) {
+                    localStorage.removeItem("accessToken");
+                    throw new Error("Refresh failed");
+                }
                 return res.json();
             })
             .then(data => {
@@ -31,9 +33,12 @@ async function refreshToken() {
 
 export async function apiFetch(url, options = {}, extraParams = {}) {
     let token = localStorage.getItem("accessToken");
+    if (!token) {
+        token = await refreshToken();
+    }
 
     const makeRequest = async (authToken) => {
-        // базовые параметры
+
         const baseParams = { locale: `${i18n.language}`, ...extraParams };
 
         const queryString = new URLSearchParams(baseParams).toString();
