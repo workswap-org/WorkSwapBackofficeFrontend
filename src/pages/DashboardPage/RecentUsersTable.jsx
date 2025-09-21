@@ -1,10 +1,8 @@
-import { useAuth } from "@/lib/contexts/auth/AuthContext";
 import { useEffect, useState } from "react";
 import { apiFetch } from "@/lib/apiClient";
 
 const RecentListingsTable = () => {
 
-    const { accessToken } = useAuth();
     const [users, setUsers] = useState([]);
     
     useEffect(() => {
@@ -19,7 +17,7 @@ const RecentListingsTable = () => {
         };
 
         fetchUsers();
-    }, [accessToken]);
+    }, []);
 
     const handleRowClick = () => {
         window.location.href = "/users";

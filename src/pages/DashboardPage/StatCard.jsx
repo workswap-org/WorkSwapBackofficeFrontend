@@ -5,7 +5,7 @@ const StatCard = ({ code, title }) => {
     const [changePercent, setChangePercent] = useState("0%");
     const [isPositive, setIsPositive] = useState(true);
 
-    useEffect(() => {
+    /* useEffect(() => {
         // Подставь реальный URL API
         fetch(`/api/stats/monthly/${code}`, {
             method: "GET",
@@ -28,7 +28,7 @@ const StatCard = ({ code, title }) => {
                 setChangePercent("0%");
                 setIsPositive(true);
             });
-    }, [code]);
+    }, [code]); */
 
     return (
         <div className="stat-card">

@@ -1,4 +1,3 @@
-import { useAuth } from "@/lib/contexts/auth/AuthContext";
 import { useEffect, useState } from "react";
 import { apiFetch } from "@/lib/apiClient";
 import PriceTypes from "@/components/small-components/PriceTypes";
@@ -6,7 +5,6 @@ import DeleteBtn from "@/components/buttons/DeleteBtn";
 
 const RecentListingsTable = () => {
 
-    const { accessToken } = useAuth();
     const [listings, setListings] = useState([]);
     
     useEffect(() => {
@@ -21,7 +19,7 @@ const RecentListingsTable = () => {
         };
 
         fetchListings();
-    }, [accessToken]);
+    }, []);
 
     const handleRowClick = () => {
         window.location.href = "/listings";

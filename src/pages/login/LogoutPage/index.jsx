@@ -7,7 +7,7 @@ const LogoutPage = () => {
 
     const navigate = useNavigate();
 
-    const { setAccessToken, setUser } = useAuth();
+    const { setUser } = useAuth();
 
     const logout = useCallback(async () => {
         try {
@@ -16,18 +16,18 @@ const LogoutPage = () => {
             console.error("Logout failed", e);
         } finally {
             navigate("/");
-            setAccessToken(null);
             setUser(null);
-            localStorage.removeItem("accessToken");
         }
-    }, [navigate, setAccessToken, setUser]);
+    }, [navigate, setUser]);
 
     useEffect(() => {
         logout()
     }, [logout])
     
     return (
-        <></>
+        <>
+            {/* LogoutPage component */}
+        </>
     );
 };
 

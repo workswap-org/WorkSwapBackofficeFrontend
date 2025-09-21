@@ -1,11 +1,9 @@
 import "@/css/pages/categories-page.css";
 import { useEffect, useState } from "react";
 import CategoryTree from "./CategoryTree";
-import { useAuth } from "@/lib/contexts/auth/AuthContext";
 import { apiFetch } from "@/lib/apiClient";
 
 const CategoriesPage = () => {
-    const { accessToken } = useAuth();
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -23,7 +21,7 @@ const CategoriesPage = () => {
         };
 
         fetchCategories();
-    }, [accessToken]);
+    }, []);
 
     const onAddCategory = () => {
         console.log("TODO: add category");
