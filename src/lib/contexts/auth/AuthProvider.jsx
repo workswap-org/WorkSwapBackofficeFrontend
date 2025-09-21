@@ -9,18 +9,18 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     const loadUser = useCallback(async () => {
+        console.log("Включаем загрузку");
         setLoading(true);
         try {
-            setTimeout(async() => {
-                const res = await apiFetch("/api/user/current", {}, {}, setAuthenticated);
-                setAuthenticated(true);
-                setUser(res.user);
-            }, 0)
+            const res = await apiFetch("/api/user/current", {}, {}, setAuthenticated);
+            setUser(res.user);
+            setAuthenticated(true);
         } catch (e) {
             console.error(e);
             setUser(null);
             setLoading(false);
         } finally {
+            console.log("Выключаем загрузку");
             setLoading(false);
         }
     }, []);

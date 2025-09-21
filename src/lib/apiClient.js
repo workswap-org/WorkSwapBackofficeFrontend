@@ -19,6 +19,7 @@ async function refreshToken(setAuthenticated) {
                     }
                     throw new Error("Refresh failed");
                 }
+                setAuthenticated(true);
                 return res;
             })
             .finally(() => {

@@ -12,12 +12,13 @@ const PrivateRoute = () => {
     useEffect(() => {
 
         console.log("isAuthenticated", isAuthenticated)
+        console.log("loading", loading)
 
-        if (!isAuthenticated) {
+        if (!isAuthenticated && !loading) {
             const fullRedirect = `${window.location.origin}${location.pathname}`;
             navigate(`/login?redirect=${encodeURIComponent(fullRedirect)}`)
         }
-    }, [isAuthenticated, location.pathname, navigate])
+    }, [isAuthenticated, loading, location.pathname, navigate])
 
     if (loading) {
         return <EmptyPage />; // или спиннер
