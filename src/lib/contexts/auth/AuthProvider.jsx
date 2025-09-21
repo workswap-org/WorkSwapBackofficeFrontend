@@ -4,7 +4,7 @@ import { apiFetch } from "@/lib/apiClient";
 
 export const AuthProvider = ({ children }) => {
 
-    
+    const [isAuthenticated, setAuthenticated] = useState(true);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -12,12 +12,13 @@ export const AuthProvider = ({ children }) => {
         setLoading(true);
         try {
             setTimeout(async() => {
-                const res = await apiFetch("/api/user/current", {}, {});
+                const res = await apiFetch("/api/user/current", {}, {}, setAuthenticated);
+                setAuthenticated(true);
                 setUser(res.user);
             }, 0)
         } catch (e) {
             console.error(e);
-            /* setUser(null); */
+            setUser(null);
             setLoading(false);
         } finally {
             setLoading(false);
@@ -31,7 +32,7 @@ export const AuthProvider = ({ children }) => {
     }, [loadUser]);
 
     return (
-        <AuthContext.Provider value={{ user, setUser, loading, loadUser }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, setUser, loading, loadUser }}>
             {children}
         </AuthContext.Provider>
     );
