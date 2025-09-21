@@ -4,7 +4,7 @@ import { apiFetch } from "@/lib/apiClient";
 
 export const AuthProvider = ({ children }) => {
 
-    const [isAuthenticated, setAuthenticated] = useState(true);
+    const [isAuthenticated, setAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
