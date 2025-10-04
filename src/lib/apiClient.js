@@ -5,7 +5,7 @@ import i18n from '@/lib/i18n';
 let isRefreshing = false;
 let refreshPromise = null;
 
-async function refreshToken(setAuthenticated) {
+export async function refreshToken() {
     if (!isRefreshing) {
         isRefreshing = true;
         refreshPromise = fetch(`${API_BASE}/api/auth/refresh`, {
@@ -14,12 +14,9 @@ async function refreshToken(setAuthenticated) {
         })
             .then(res => {
                 if (!res.ok) {
-                    if (setAuthenticated) {
-                        setAuthenticated(false);
-                    }
+                    console.error(res)
                     throw new Error("Refresh failed");
                 }
-                setAuthenticated(true);
                 return res;
             })
             .finally(() => {
@@ -29,7 +26,7 @@ async function refreshToken(setAuthenticated) {
     return refreshPromise;
 }
 
-export async function apiFetch(url, options = {}, extraParams = {}, setAuthenticated) {
+export async function apiFetch(url, options = {}, extraParams = {}) {
 
     const makeRequest = async () => {
 
@@ -53,7 +50,7 @@ export async function apiFetch(url, options = {}, extraParams = {}, setAuthentic
 
     if (res.status === 401) {
         try {
-            const refreshRes = await refreshToken(setAuthenticated);
+            const refreshRes = await refreshToken();
             if (refreshRes.ok) {
                 res = await makeRequest();
             }

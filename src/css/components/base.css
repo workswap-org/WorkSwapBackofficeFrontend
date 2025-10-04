@@ -17,6 +17,7 @@
 @import url(tables.css);
 @import url(hovers.css);
 @import url(modal.css);
+@import url(tooltip.css);
 @import url(../variables.css);
 
 @import url(cards/listing-card.css);

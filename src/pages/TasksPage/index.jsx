@@ -2,25 +2,12 @@ import TaskCreateModal from "./TaskCreateModal";
 import TaskComments from "./TaskComments";
 import TaskDetails from "./TaskDetails";
 import TaskTable from "./TasksTable";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import "@/css/pages/tasks-page.css"
 
 const TasksPage = () => {
 
     const [selectedTaskId, setSelectedTaskId] = useState(null);
-
-    useEffect(() => {
-        // Создаём link для CSS
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = "/css/pages/tasks-page.css"; // путь к CSS из public
-        link.id = "login-page-css";
-        document.head.appendChild(link);
-
-        // Убираем стили при размонтировании
-        return () => {
-            document.head.removeChild(link);
-        };
-    }, []);
 
     return (
         <>

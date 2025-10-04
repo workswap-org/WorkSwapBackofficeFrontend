@@ -4,26 +4,35 @@ import { apiFetch } from "@/lib/apiClient";
 
 export const AuthProvider = ({ children }) => {
 
-    const [isAuthenticated, setAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isAuthenticated, setAuthenticated] = useState(false);
+
+    const updateAuthentication = useCallback((user) => {
+        if (user) {
+            setAuthenticated(user.type == "STANDART");
+        }
+    }, [])
 
     const loadUser = useCallback(async () => {
-        console.log("Включаем загрузку");
-        setLoading(true);
         try {
-            const res = await apiFetch("/api/user/current", {}, {}, setAuthenticated);
+            const res = await apiFetch("/api/user/current", {}, {});
             setUser(res.user);
-            setAuthenticated(true);
+            updateAuthentication(res.user);
+            return true;
         } catch (e) {
             console.error(e);
             setUser(null);
             setLoading(false);
+            return false;
         } finally {
-            console.log("Выключаем загрузку");
             setLoading(false);
         }
-    }, []);
+    }, [updateAuthentication]);
+
+    useEffect(() => {
+        updateAuthentication(user);
+    }, [updateAuthentication, user])
 
     useEffect(() => {
 
