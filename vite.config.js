@@ -20,7 +20,7 @@ export default defineConfig({
         allowedHosts: [
             'dash.workswap.org'
         ],
-        port: 30008,
+        port: 8082,
         proxy: {
             "/proxy": {
                 target: "https://api.workswap.org",
@@ -33,6 +33,6 @@ export default defineConfig({
         global: 'window'
     },
     preview: {
-        port: 8082
+        port: 30008
     }
 })
