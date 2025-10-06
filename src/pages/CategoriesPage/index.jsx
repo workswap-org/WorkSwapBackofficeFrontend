@@ -1,7 +1,6 @@
-import "@/css/pages/categories-page.css";
 import { useEffect, useState } from "react";
 import CategoryTree from "./CategoryTree";
-import { apiFetch } from "@/lib/apiClient";
+import { apiFetch } from "@core/lib/services/apiClient";
 
 const CategoriesPage = () => {
     const [categories, setCategories] = useState([]);

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useActivePage } from "../lib/hooks/contexts/useActivePage";
-import Avatar from "./small-components/Avatar";
+import { useActivePage } from "@core/lib/hooks/contexts/useActivePage";
+import Avatar from "@core/components/common/Avatar";
 
 const pageTitles = {
   dashboard: "Панель управления",

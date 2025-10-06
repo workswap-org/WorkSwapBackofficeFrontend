@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { apiFetch } from "@/lib/apiClient";
+import { apiFetch } from "@core/lib/services/apiClient";
 import RolesList from "./RolesList";
 import PermissionsList from "./PermissionsList";
-import "@/css/pages/permission-page.css"
 import RoleCreateModal from "./RoleCreateModal";
 import PermissionCreateModal from "./PermissionCreateModal";
 

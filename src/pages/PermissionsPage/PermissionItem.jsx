@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import PermissionActions from "./PermissionActions";
-import { apiFetch } from '@/lib/apiClient';
-import { useNotification } from "@/lib/contexts/notifications/NotificationContext";
+import { apiFetch } from '@core/lib/services/apiClient';
+import { useNotification } from "@core/lib/contexts/NotificationContext";
 
 const PermissionItem = ({
     permission,

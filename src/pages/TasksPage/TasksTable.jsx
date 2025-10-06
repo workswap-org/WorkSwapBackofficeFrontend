@@ -1,6 +1,6 @@
-import { apiFetch } from "@/lib/apiClient";
+import { apiFetch } from "@core/lib/services/apiClient";
 import { useState, useEffect } from "react";
-import Avatar from "@/components/small-components/Avatar";
+import Avatar from "@core/components/common/Avatar";
 
 const TaskTable = ({ onSelectTask }) => {
 

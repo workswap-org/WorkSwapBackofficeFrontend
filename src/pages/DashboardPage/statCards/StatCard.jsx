@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Tooltip from "@/components/small-components/Tooltip";
+import Tooltip from "@core/components/common/Tooltip";
 
 const StatCard = ({ value, metrics, title }) => {
     const [changePercent, setChangePercent] = useState("0%");

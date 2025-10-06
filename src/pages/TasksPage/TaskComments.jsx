@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { apiFetch } from "@/lib/apiClient";
-import { useAuth } from "@/lib/contexts/auth/AuthContext";
-import Avatar from "@/components/small-components/Avatar";
+import { apiFetch } from "@core/lib/services/apiClient";
+import { useAuth } from "@core/lib/contexts/AuthContext";
+import Avatar from "@core/components/common/Avatar";
 
 const TaskComments = ({taskId}) => {
     

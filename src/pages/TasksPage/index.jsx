@@ -3,7 +3,6 @@ import TaskComments from "./TaskComments";
 import TaskDetails from "./TaskDetails";
 import TaskTable from "./TasksTable";
 import { useState } from "react";
-import "@/css/pages/tasks-page.css"
 
 const TasksPage = () => {
 

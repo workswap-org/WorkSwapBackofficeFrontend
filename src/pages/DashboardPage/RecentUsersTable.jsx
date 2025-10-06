@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { apiFetch } from "@/lib/apiClient";
+import { apiFetch } from "@core/lib/services/apiClient";
 
 const RecentListingsTable = () => {
 

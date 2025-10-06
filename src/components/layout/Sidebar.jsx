@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import ThemeChanger from "./ThemeChanger";
+import ThemeChanger from "@core/components/layout/ThemeChanger";
 
 export default function Sidebar({ sidebarVisible, setSidebarVisible}) {
     return (

@@ -1,4 +1,4 @@
-import { apiFetch } from "@/lib/apiClient";
+import { apiFetch } from "@core/lib/services/apiClient";
 import { useState } from "react";
 
 const PermissionCreateModal = ({setPermissionCreateModal}) => {

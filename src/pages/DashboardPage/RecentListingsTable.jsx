@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { apiFetch } from "@/lib/apiClient";
-import PriceTypes from "@/components/small-components/PriceTypes";
-import DeleteBtn from "@/components/buttons/DeleteBtn";
+import { apiFetch } from "@core/lib/services/apiClient";
+import PriceTypes from "@core/components/common/PriceTypes";
+import DeleteBtn from "@core/components/common/buttons/DeleteBtn";
 
 const RecentListingsTable = () => {
 
