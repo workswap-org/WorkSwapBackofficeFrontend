@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CategoryTree from "./CategoryTree";
-import { apiFetch } from "@core/lib/services/apiClient";
+import { getCategories } from "@core/lib";
 
 const CategoriesPage = () => {
     const [categories, setCategories] = useState([]);
@@ -9,7 +9,7 @@ const CategoriesPage = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const res = await apiFetch(`/api/categories`);
+                const res = await getCategories();
                 const data = await res;
                 setCategories(data.categories || []);
             } catch (err) {

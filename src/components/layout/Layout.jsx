@@ -1,9 +1,11 @@
 import { useLocation, Outlet } from "react-router-dom";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
-import { useAuth } from "@core/lib/contexts/AuthContext";
-import { apiFetch } from "@core/lib/services/apiClient";
-import ActivePageContext from "@core/lib/contexts/ActivePageContext";
+import { 
+    useAuth,
+    apiFetch,
+    ActivePageContext
+} from "@core/lib";
 import { useState } from "react";
 
 export default function Layout() {

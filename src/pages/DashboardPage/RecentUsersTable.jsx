@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
-import { apiFetch } from "@core/lib/services/apiClient";
+import { getRecentUsers } from "@core/lib";
 
 const RecentListingsTable = () => {
 
     const [users, setUsers] = useState([]);
     
     useEffect(() => {
-        const fetchUsers = async () => {
+        const loadUsers = async () => {
             try {
-                const res = await apiFetch(`/api/user/recent/3`);
-                const data = await res;
-                setUsers(data.users || []);
+                const data = await getRecentUsers(3);
+                setUsers(data.users);
             } catch (err) {
                 console.error(err);
             }
         };
 
-        fetchUsers();
+        loadUsers();
     }, []);
 
     const handleRowClick = () => {

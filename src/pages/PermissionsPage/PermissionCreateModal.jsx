@@ -1,13 +1,13 @@
-import { apiFetch } from "@core/lib/services/apiClient";
+import { createPermission } from "@core/lib";
 import { useState } from "react";
 
 const PermissionCreateModal = ({setPermissionCreateModal}) => {
 
     const [name, setName] = useState("");
 
-    async function createPermission() {
+    async function createPerm() {
         if (!name.trim()) return;
-        const data = await apiFetch(`/api/permissions/create/permission?permissionName=${name}`, { method: "POST" });
+        const data = await createPermission(name);
         console.log(data?.message);
         setName("");
         setPermissionCreateModal(false);
@@ -35,7 +35,7 @@ const PermissionCreateModal = ({setPermissionCreateModal}) => {
                             />
                         </div>
 
-                        <div className="form-actions" onClick={() => createPermission()}>
+                        <div className="form-actions" onClick={() => createPerm()}>
                             <button className="btn btn-outline-primary">Сохранить</button>
                         </div>
                     </div>

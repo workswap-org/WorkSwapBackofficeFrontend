@@ -1,6 +1,6 @@
 import Tooltip from "@core/components/common/Tooltip";
 import FormattedDateDM from "@core/components/common/date/FormattedDateDM";
-import { apiFetch } from "@core/lib/services/apiClient";
+import { getOnlineMetricsMonthly, getOnline } from "@core/lib";
 import { useEffect, useState } from "react";
 
 const OnlineStatCard = () => {
@@ -9,7 +9,7 @@ const OnlineStatCard = () => {
 
     useEffect(() => {
         async function loadOnline() {
-            const data = await apiFetch('/api/stats/online');
+            const data = await getOnline();
             setOnline(data.online)
         }
 
@@ -19,7 +19,7 @@ const OnlineStatCard = () => {
         }
         
         async function loadOnlineMetrics() {
-            const data = await apiFetch('/api/stats/online-metrics/month');
+            const data = await getOnlineMetricsMonthly();
             setMetrics(data.metrics)
             console.log(data)
         }

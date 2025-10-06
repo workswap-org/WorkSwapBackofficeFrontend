@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import PermissionActions from "./PermissionActions";
-import { apiFetch } from '@core/lib/services/apiClient';
-import { useNotification } from "@core/lib/contexts/NotificationContext";
+import { 
+    updateRolePermissions, 
+    updatePermission, 
+    useNotification 
+} from '@core/lib';
 
 const PermissionItem = ({
     permission,
@@ -30,7 +33,7 @@ const PermissionItem = ({
             permissionId: permId,
             enabled
         }
-        const data = await apiFetch(`/api/permissions/${selectedRole.id}/save`, { method: 'PUT' }, params)
+        const data = await updateRolePermissions(selectedRole.id, params);
         if (data.message) setSaving(false);
     }
 
@@ -52,7 +55,7 @@ const PermissionItem = ({
         if (permissionName) params.name = permissionName;
         params.comment = permissionComment || "";
         setEditMode(false);
-        const res = await apiFetch(`/api/permissions/update/permission/${id}`, {method: "POST"}, params)
+        const res = await updatePermission(id, params);
         if (res.message) {
             notificate(res.message, res.status);
         }

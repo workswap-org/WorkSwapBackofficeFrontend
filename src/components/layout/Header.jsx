@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useActivePage } from "@core/lib/hooks/contexts/useActivePage";
+import { useActivePage } from "@core/lib";
 import Avatar from "@core/components/common/Avatar";
 
 const pageTitles = {

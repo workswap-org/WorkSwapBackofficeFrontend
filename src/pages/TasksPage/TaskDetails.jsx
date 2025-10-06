@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { apiFetch } from "@core/lib/services/apiClient";
+import { getTaskDetails } from "@core/lib";
 import TimeCounter from "@core/components/common/TimeCounter";
-import { useAuth } from "@core/lib/contexts/AuthContext";
+import { useAuth } from "@core/lib";
 
 const TaskDetails = ({taskId}) => {
 
@@ -15,7 +15,7 @@ const TaskDetails = ({taskId}) => {
 
         async function loadTaskDetails() {
             try {
-                const data = await apiFetch(`/api/tasks/${taskId}/details`);
+                const data = await getTaskDetails(taskId);
                 setTask(data.task || {});
                 setAuthor(data.author || {});
                 setExecutor(data.executor || {});

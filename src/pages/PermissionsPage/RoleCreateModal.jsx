@@ -1,13 +1,13 @@
-import { apiFetch } from "@core/lib/services/apiClient";
+import { createRole } from "@core/lib";
 import { useState } from "react";
 
 const RoleCreateModal = ({setRoleCreateModal}) => {
 
     const [name, setName] = useState("");
 
-    async function createRole() {
+    async function createR() {
         if (!name.trim()) return;
-        const data = await apiFetch(`/api/permissions/create/role?roleName=${name}`, { method: "POST" });
+        const data = await createRole(name);
         console.log(data?.message);
         setName("");
         setRoleCreateModal(false);
@@ -35,7 +35,7 @@ const RoleCreateModal = ({setRoleCreateModal}) => {
                             />
                         </div>
 
-                        <div className="form-actions" onClick={() => createRole()}>
+                        <div className="form-actions" onClick={() => createR()}>
                             <button className="btn btn-outline-primary">Сохранить</button>
                         </div>
                     </div>
