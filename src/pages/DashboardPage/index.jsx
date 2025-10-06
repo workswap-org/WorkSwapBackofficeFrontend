@@ -1,7 +1,6 @@
 import RecentListingsTable from "./RecentListingsTable";
 import RecentUsersTable from "./RecentUsersTable";
 import StatGrid from "./StatGrid";
-import "@/css/pages/dashboard-page.css"
 
 const DashboardPage = () => {
 

@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import Layout from "./layouts/Layout";
+import Layout from "./components/layout/Layout";
 
 import CategoriesPage from "./pages/CategoriesPage";
 import DashboardPage from "./pages/DashboardPage";
@@ -8,20 +8,18 @@ import TasksPage from "./pages/TasksPage";
 import PermissionsPage from "./pages/PermissionsPage";
 
 /* Страницы логина */
-import LoginPage from "./pages/login/LoginPage";
-import RegisterPage from "./pages/login/RegisterPage";
-import LoginSuccessPage from "./pages/login/LoginSuccessPage";
-import LogoutPage from "./pages/login/LogoutPage";
+import LoginPage from "@core/pages/login/LoginPage";
+import RegisterPage from "@core/pages/login/RegisterPage";
+import LoginSuccessPage from "@core/pages/login/LoginSuccessPage";
+import LogoutPage from "@core/pages/login/LogoutPage";
 
-import PrivateRoute from "./components/PrivateRoute";
-import AuthGuard from "@/lib/contexts/auth/AuthGuard";
-import RouteLogger from "./components/logging/RouteLogger";
+import PrivateRoute from "@core/routes/PrivateRoute";
+import AuthGuard from "@core/routes/AuthGuard";
 import { Navigate } from "react-router-dom";
 
 const AppRouter = () => {
     return (
         <>
-            <RouteLogger />
             <Routes>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />

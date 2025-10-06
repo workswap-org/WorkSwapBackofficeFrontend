@@ -1,5 +1,3 @@
-import "@/css/pages/categories-page.css";
-
 const buildCategoryTree = (categories) => {
     const map = new Map();
     const roots = [];

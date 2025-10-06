@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { apiFetch } from "@/lib/apiClient";
+import { 
+    getAllRoles,
+    getAllPermissions
+} from "@core/lib";
 import RolesList from "./RolesList";
 import PermissionsList from "./PermissionsList";
-import "@/css/pages/permission-page.css"
 import RoleCreateModal from "./RoleCreateModal";
 import PermissionCreateModal from "./PermissionCreateModal";
 
@@ -24,12 +26,12 @@ const PermissionsPage = () => {
 
     useEffect(() => {
         async function loadRoles() {
-            const data = await apiFetch('/api/permissions/roles');
+            const data = await getAllRoles();
             setRoles(data.roles);
         }
 
         async function loadPerms() {
-            const data = await apiFetch('/api/permissions');
+            const data = await getAllPermissions();
             setPermissions(data.permissions);
         }
 

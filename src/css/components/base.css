@@ -1,28 +1,3 @@
-@import url(footer.css);
-@import url(header.css);
-@import url(lang-switcher.css);
-@import url(slider-switcher.css);
-@import url(rating.css);
-@import url(buttons.css);
-@import url(terms-modal.css);
-@import url(notification.css);
-@import url(text-decorations.css);
-@import url(breadcrumbs.css);
-@import url(upload-controls.css);
-@import url(reviews.css);
-@import url(data-fields.css);
-@import url(animations.css);
-@import url(avatar-types.css);
-@import url(simple-components.css);
-@import url(tables.css);
-@import url(hovers.css);
-@import url(modal.css);
-@import url(tooltip.css);
-@import url(../variables.css);
-
-@import url(cards/listing-card.css);
-@import url(cards/resume-card.css);
-
 /* Базовые сбросы */
 *, *::before, *::after {
     box-sizing: border-box;

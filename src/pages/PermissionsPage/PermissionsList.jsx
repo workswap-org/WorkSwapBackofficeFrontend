@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { apiFetch } from "@/lib/apiClient";
+import { getRolePermissions } from "@core/lib";
 import PermissionItem from "./PermissionItem";
 
 const PermissionsList = ( {permissions, selectedRole, setSaving} ) => {
@@ -8,7 +8,7 @@ const PermissionsList = ( {permissions, selectedRole, setSaving} ) => {
 
     useEffect(() => {
         async function loadPermsByRole() {
-            const data = await apiFetch(`/api/permissions/${selectedRole?.id}/get`);
+            const data = await getRolePermissions(selectedRole?.id);
             setCheckedPermissions(data.permissions);
         }
 

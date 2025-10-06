@@ -1,18 +1,15 @@
-import Tooltip from "@/components/small-components/Tooltip";
-import FormattedDateDM from "@/components/small-components/date/FormattedDateDM";
-import { apiFetch } from "@/lib/apiClient";
+import Tooltip from "@core/components/common/Tooltip";
+import FormattedDateDM from "@core/components/common/date/FormattedDateDM";
+import { getOnlineMetricsMonthly, getOnline } from "@core/lib";
 import { useEffect, useState } from "react";
 
 const OnlineStatCard = () => {
-    const [changePercent, setChangePercent] = useState("0%");
-    const [isPositive, setIsPositive] = useState(true);
-
     const [online, setOnline] = useState(0)
     const [metrics, setMetrics] = useState([]);
 
     useEffect(() => {
         async function loadOnline() {
-            const data = await apiFetch('/api/stats/online');
+            const data = await getOnline();
             setOnline(data.online)
         }
 
@@ -22,7 +19,7 @@ const OnlineStatCard = () => {
         }
         
         async function loadOnlineMetrics() {
-            const data = await apiFetch('/api/stats/online-metrics/month');
+            const data = await getOnlineMetricsMonthly();
             setMetrics(data.metrics)
             console.log(data)
         }
@@ -53,10 +50,6 @@ const OnlineStatCard = () => {
                         <div className="divider">|</div>
                         <Tooltip text="Средний онлайн за месяц">
                             <div>{metrics?.avgOnline?.toFixed(1)}</div>
-                        </Tooltip>
-                        <div className="divider">|</div>
-                        <Tooltip text="(p95) Онлайн, который почти никогда не превышается">
-                            <div>{metrics?.p95Online}</div>
                         </Tooltip>
                         <div className="divider">|</div>
                         <Tooltip text="(p95) Онлайн, который почти никогда не превышается">

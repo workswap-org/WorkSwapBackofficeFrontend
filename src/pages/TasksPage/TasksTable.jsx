@@ -1,6 +1,6 @@
-import { apiFetch } from "@/lib/apiClient";
+import { getTasksMetadata, getSortedTasks } from "@core/lib";
 import { useState, useEffect } from "react";
-import Avatar from "@/components/small-components/Avatar";
+import Avatar from "@core/components/common/Avatar";
 
 const TaskTable = ({ onSelectTask }) => {
 
@@ -22,7 +22,7 @@ const TaskTable = ({ onSelectTask }) => {
             if (taskStatus) params.status = taskStatus;
 
             try {
-                const res = await apiFetch("/api/tasks/get-tasks", {}, params);
+                const res = await getSortedTasks(params);
                 const data = await res;
                 setTasks(data.tasks || []);
             } catch (err) {
@@ -37,7 +37,7 @@ const TaskTable = ({ onSelectTask }) => {
     // Загружаем метаданные только один раз при загрузке страницы
         async function loadSettings() {
             try {
-                const res = await apiFetch(`/api/tasks/metadata`);
+                const res = await getTasksMetadata();
                 const data = await res;
                 setTaskTypeList(data.taskTypeList || []);
                 setTaskStatusList(data.taskStatusList || []);

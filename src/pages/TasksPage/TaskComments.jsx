@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { apiFetch } from "@/lib/apiClient";
-import { useAuth } from "@/lib/contexts/auth/AuthContext";
-import Avatar from "@/components/small-components/Avatar";
+import { getTaskComments } from "@core/lib";
+import { useAuth } from "@core/lib";
+import Avatar from "@core/components/common/Avatar";
 
 const TaskComments = ({taskId}) => {
     
@@ -13,7 +13,7 @@ const TaskComments = ({taskId}) => {
 
         async function loadTaskComments() {
             try {
-                const data = await apiFetch(`/api/tasks/${taskId}/comments`);
+                const data = await getTaskComments(taskId);
                 console.log(data);
                 setComments(data.comments || {});
             } catch (err) {

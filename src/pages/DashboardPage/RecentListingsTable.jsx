@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { apiFetch } from "@/lib/apiClient";
-import PriceTypes from "@/components/small-components/PriceTypes";
-import DeleteBtn from "@/components/buttons/DeleteBtn";
+import { getRecentListings } from "@core/lib";
+import PriceTypes from "@core/components/common/PriceTypes";
+import DeleteBtn from "@core/components/common/buttons/DeleteBtn";
 
 const RecentListingsTable = () => {
 
@@ -10,7 +10,7 @@ const RecentListingsTable = () => {
     useEffect(() => {
         const fetchListings = async () => {
             try {
-                const res = await apiFetch(`/api/listing/recent/3`);
+                const res = await getRecentListings(3);
                 const data = await res;
                 setListings(data.listings || []);
             } catch (err) {
