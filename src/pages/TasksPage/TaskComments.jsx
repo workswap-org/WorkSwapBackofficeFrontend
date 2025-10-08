@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTaskComments } from "@core/lib";
 import { useAuth } from "@core/lib";
-import Avatar from "@core/components/common/Avatar";
+import { Avatar } from "@core/components";
 
 const TaskComments = ({taskId}) => {
     

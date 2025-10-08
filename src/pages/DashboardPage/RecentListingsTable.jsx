@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { getRecentListings } from "@core/lib";
-import PriceTypes from "@core/components/common/PriceTypes";
-import DeleteBtn from "@core/components/common/buttons/DeleteBtn";
+import {
+    PriceTypes,
+    DeleteBtn
+} from "@core/components";
 
 const RecentListingsTable = () => {
 

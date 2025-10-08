@@ -1,6 +1,3 @@
-@import url(../components/base.css);
-@import url(list-page.css);
-
 /* Основные стили админки */
 .admin-layout {
     display: flex;

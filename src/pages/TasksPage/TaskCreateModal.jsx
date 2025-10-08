@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Modal from "@core/components/ui/Modal";
+import { Modal } from "@core/components";
 
 const TaskCreateModal = () => {
 

@@ -1,6 +1,6 @@
 import { getTasksMetadata, getSortedTasks } from "@core/lib";
 import { useState, useEffect } from "react";
-import Avatar from "@core/components/common/Avatar";
+import { Avatar } from "@core/components";
 
 const TaskTable = ({ onSelectTask }) => {
 

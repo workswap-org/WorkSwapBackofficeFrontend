@@ -1,5 +1,7 @@
-import Tooltip from "@core/components/common/Tooltip";
-import FormattedDateDM from "@core/components/common/date/FormattedDateDM";
+import {
+    FormattedDateDM,
+    Tooltip
+} from "@core/components";
 import { getOnlineMetricsMonthly, getOnline } from "@core/lib";
 import { useEffect, useState } from "react";
 

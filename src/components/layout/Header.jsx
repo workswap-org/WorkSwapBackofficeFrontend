@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 import { useActivePage } from "@core/lib";
-import Avatar from "@core/components/common/Avatar";
+import { Avatar } from "@core/components";
 
 const pageTitles = {
-  dashboard: "Панель управления",
-  listings: "Управление объявлениями",
-  resumes: "Управление резюме",
-  users: "Управление пользователями",
-  news: "Управление новостями",
-  locations: "Управление локациями",
-  categories: "Управление категориями",
-  tasks: "Задачи",
-  localization: "Локализация",
-  permissions: "Роли и разрешения",
+    dashboard: "Панель управления",
+    listings: "Управление объявлениями",
+    resumes: "Управление резюме",
+    users: "Управление пользователями",
+    news: "Управление новостями",
+    locations: "Управление локациями",
+    categories: "Управление категориями",
+    tasks: "Задачи",
+    localization: "Локализация",
+    permissions: "Роли и разрешения",
 };
 
 const Header = ({ user, toggleSidebar }) => {

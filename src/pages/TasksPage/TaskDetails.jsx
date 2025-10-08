@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { getTaskDetails } from "@core/lib";
-import TimeCounter from "@core/components/common/TimeCounter";
-import { useAuth } from "@core/lib";
+import { TimeCounter } from "@core/components";
+import { useAuth, getTaskDetails } from "@core/lib";
 
 const TaskDetails = ({taskId}) => {
 
