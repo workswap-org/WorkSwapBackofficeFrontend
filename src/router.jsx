@@ -1,4 +1,8 @@
-import { Routes, Route } from "react-router-dom";
+import { 
+    Routes, 
+    Route,
+    Navigate
+} from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
 
@@ -8,14 +12,17 @@ import TasksPage from "./pages/TasksPage";
 import PermissionsPage from "./pages/PermissionsPage";
 
 /* Страницы логина */
-import LoginPage from "@core/pages/login/LoginPage";
-import RegisterPage from "@core/pages/login/RegisterPage";
-import LoginSuccessPage from "@core/pages/login/LoginSuccessPage";
-import LogoutPage from "@core/pages/login/LogoutPage";
+import {
+    LoginPage,
+    RegisterPage,
+    LoginSuccessPage,
+    LogoutPage
+} from "@core/pages";
 
-import PrivateRoute from "@core/routes/PrivateRoute";
-import AuthGuard from "@core/routes/AuthGuard";
-import { Navigate } from "react-router-dom";
+import {
+    PrivateRoute,
+    AuthGuard
+} from "@core/routes";
 
 const AppRouter = () => {
     return (

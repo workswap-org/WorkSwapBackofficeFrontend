@@ -1,5 +1,5 @@
 import {
-    FormattedDateDM,
+    FormattedDate,
     Tooltip
 } from "@core/components";
 import { getOnlineMetricsMonthly, getOnline } from "@core/lib";
@@ -72,7 +72,7 @@ const OnlineStatCard = () => {
                         </Tooltip>
                         <div className="divider">|</div>
                         <Tooltip text="День пика онлайна">
-                            <FormattedDateDM isoDate={metrics?.peakDay} />
+                            <FormattedDate isoDate={metrics?.peakDay} format="DM"/>
                         </Tooltip>
                     </div>
                 </>
