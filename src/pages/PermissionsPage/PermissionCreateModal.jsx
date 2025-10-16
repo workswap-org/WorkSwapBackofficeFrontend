@@ -23,8 +23,8 @@ const PermissionCreateModal = ({setPermissionCreateModal}) => {
                     <h2>Создать Разрешение</h2>
                     <div style={{gap: '0.5rem'}}>                  
                         <div className="form-group">
-                            <label for="permissionName">Имя:</label>
-                            <p for="permissionName">(на англиском, заглавными буквами)</p>
+                            <label htmlFor="permissionName">Имя:</label>
+                            <p htmlFor="permissionName">(на англиском, заглавными буквами)</p>
                             <input
                                 type="text"
                                 id="permissionName"

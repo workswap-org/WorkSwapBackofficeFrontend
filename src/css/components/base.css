@@ -73,29 +73,8 @@ li {
     height: fit-content;
 }
 
-.card-title {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-}
-
 .card-header {
     position: relative;
-}
-
-.card-title a {
-    color: var(--text-color);
-    text-decoration: none;
-}
-
-.card-title a:hover {
-    color: var(--primary);
-}
-
-.card-footer {
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-color);
-    font-size: 0.8rem;
-    color: var(--gray);
 }
 
 @media (max-width: 600px) {

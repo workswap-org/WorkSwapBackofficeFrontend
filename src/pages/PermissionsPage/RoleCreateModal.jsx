@@ -23,8 +23,8 @@ const RoleCreateModal = ({setRoleCreateModal}) => {
                     <h2>Создать роль</h2>
                     <div style={{gap: '0.5rem'}}>                  
                         <div className="form-group">
-                            <label for="roleName">Имя:</label>
-                            <p for="roleName">(на англиском, заглавными буквами)</p>
+                            <label htmlFor="roleName">Имя:</label>
+                            <p htmlFor="roleName">(на англиском, заглавными буквами)</p>
                             <input
                                 type="text"
                                 id="roleName"
