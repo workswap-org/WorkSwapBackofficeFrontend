@@ -18,11 +18,6 @@ body {
     max-width: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
 a {
     text-decoration: none;
     transition: all 0.3s ease;
@@ -35,25 +30,6 @@ img {
     display: block;
 }
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -0.75rem;
-}
-
-.col {
-    flex: 1;
-    padding: 0 0.75rem;
-}
-
-li {
-    margin-left: 2.5rem;
-}
-
-.admin-form-control input[type="file"] {
-    display: none;
-}
-
 .card {
     background: var(--background-l1);
     border-radius: var(--radius);
@@ -62,23 +38,26 @@ li {
     height: fit-content;
     display: flex;
     flex-direction: column;
-}
 
-.card-body {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    flex: 1;
-    min-height: 0;
-    height: fit-content;
-}
+    &.admin-page {
+        flex: 1;
+    }
 
-.card-header {
-    position: relative;
-}
+    &__body {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        flex: 1;
+        min-height: 0;
+        height: fit-content;
+        gap: 0.5rem;
 
-@media (max-width: 600px) {
-    .card-body {
-        padding: 0.5rem;
+        @media (max-width: 600px) {
+            padding: 0.5rem;
+        }
+    }
+
+    &__header {
+        position: relative;
     }
 }

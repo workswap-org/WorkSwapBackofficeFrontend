@@ -16,11 +16,8 @@ const TasksPage = () => {
                 <span href="/tasks">Задачи</span>
             </nav>
             <div className="card admin-page">
-                <div className="card-body">
-                    <div className="card-header">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <h2>Задачи</h2>
-                        </div>
+                <div className="card__body">
+                    <div className="card__header">
                         <TaskCreateModal />
                     </div>
                     <div className="task-page-container">

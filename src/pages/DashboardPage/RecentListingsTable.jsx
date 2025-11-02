@@ -53,7 +53,7 @@ const RecentListingsTable = () => {
                             <td>{new Date(listing.createdAt).toLocaleDateString("ru-RU")}</td>
                             <td>
                                 <div className="button-actions">
-                                    <a href={`/listing/${listing.id}`} className="btn-admin btn-admin-secondary mr-1">
+                                    <a href={`/listing/${listing.id}`} className="btn btn-secondary mr-1">
                                         <i className="fa-solid fa-eye"></i>
                                     </a>
                                     <DeleteBtn type="listing" id={listing.id} />

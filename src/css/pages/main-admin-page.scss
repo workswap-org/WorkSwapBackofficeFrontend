@@ -1,0 +1,105 @@
+/* Основные стили админки */
+.admin-layout {
+    display: flex;
+    height: 100vh;
+    overflow: auto;
+
+    @media (max-width: 992px) {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        flex: 0 0 var(--sidebar-width);
+        background-color: var(--primary-dark);
+        color: var(--permanent-text-color);
+        padding: 1.5rem 0;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+
+        @media (max-width: 992px) {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 101;
+            visibility: hidden;
+            transform: translateX(100%);
+            transition: all 0.2s ease;
+
+            &.show {
+                visibility: visible;
+                transform: translateX(0);
+            }
+        }
+
+        .admin-logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--permanent-text-color);
+            text-align: center;
+        }
+
+        .admin-nav {
+            margin-top: 2rem;
+
+            @media (max-width: 992px) {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            &__title {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.6);
+                letter-spacing: 1px;
+            }
+
+            &__item {
+                display: block;
+                padding: 0.75rem 1.5rem;
+                color: var(--permanent-text-color);
+                text-decoration: none;
+                transition: all 0.2s;
+                border-left: 3px solid transparent;
+
+                @media (max-width: 992px) {
+                    flex: 1 0 auto;
+                }
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.1);
+                    border-left-color: var(--primary-light);
+                }
+
+                &.active {
+                    background-color: rgba(139, 107, 107, 0.15);
+                    border-left-color: var(--permanent-text-color);
+                }
+
+                i {
+                    margin-right: 0.75rem;
+                    width: 20px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .admin-main {
+        flex: 1;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        overflow-y: auto;
+        height: fit-content;
+
+        @media (max-width: 992px) {
+            padding: 0.5rem;
+            max-height: fit-content;
+            height: fit-content;
+        }
+    }
+}

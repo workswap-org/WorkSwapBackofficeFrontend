@@ -48,7 +48,7 @@ const RecentListingsTable = () => {
                                 </span>
                             </td>
                             <td>
-                                <a href={`/user/${user.id}`} className="btn-admin btn-admin-primary">
+                                <a href={`/user/${user.id}`} className="btn btn-primary">
                                     <i className="fa-solid fa-user-cog"></i>
                                 </a>
                             </td>

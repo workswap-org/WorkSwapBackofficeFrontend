@@ -166,7 +166,7 @@ const TasksList = ({ tasks, user, onSelectTask = () => {}}) => {
                                 {(task.status.code === "CANCELED" || task.status.code === "NEW") && (
                                     <button
                                         data-task={task.id}
-                                        className="btn-admin btn-admin-primary pickup-task-btn"
+                                        className="btn btn-primary pickup-task-btn"
                                     >
                                         <i className="fa-solid fa-download"></i>
                                     </button>
@@ -176,18 +176,18 @@ const TasksList = ({ tasks, user, onSelectTask = () => {}}) => {
                                     <>
                                         <button
                                             data-task={task.id}
-                                            className="btn-admin btn-admin-confirm complete-task-btn"
+                                            className="btn btn-confirm complete-task-btn"
                                         >
                                             <i className="fa-solid fa-check"></i>
                                         </button>
                                         <button
                                             data-task={task.id}
-                                            className="btn-admin btn-admin-danger cancel-task-btn"
+                                            className="btn btn-danger cancel-task-btn"
                                         >
                                             <i className="fa-solid fa-trash"></i>
                                         </button>
                                         <button
-                                            className="btn-admin btn-admin-primary"
+                                            className="btn btn-primary"
                                         >
                                             <i className="fa-solid fa-edit"></i>
                                         </button>
@@ -197,7 +197,7 @@ const TasksList = ({ tasks, user, onSelectTask = () => {}}) => {
                                 {task.status.code === "NEW" && (
                                     <button
                                         data-task={task.id}
-                                        className="btn-admin btn-admin-danger cancel-task-btn"
+                                        className="btn btn-danger cancel-task-btn"
                                     >
                                         <i className="fa-solid fa-trash"></i>
                                     </button>

@@ -12,63 +12,63 @@ export default function Sidebar({ sidebarVisible, setSidebarVisible}) {
 
             <ThemeChanger />
 
-            <nav>
-                <div className="admin-nav-title">Основное</div>
+            <nav className="admin-nav">
+                <div className="admin-nav__title">Основное</div>
                 
-                <NavLink to="/dashboard" className="admin-nav-item" onClick={() => setSidebarVisible(false)}>
+                <NavLink to="/dashboard" className="admin-nav__item" onClick={() => setSidebarVisible(false)}>
                     <i className="fa-solid fa-tachometer-alt"></i> Панель управления
                 </NavLink>
-                <NavLink to="/listings" className="admin-nav-item" onClick={() => setSidebarVisible(false)}>
+                <NavLink to="/listings" className="admin-nav__item" onClick={() => setSidebarVisible(false)}>
                     <i className="fa-solid fa-list"></i> Объявления
                 </NavLink>
-                <NavLink to="/resumes" className="admin-nav-item" onClick={() => setSidebarVisible(false)}>
+                <NavLink to="/resumes" className="admin-nav__item" onClick={() => setSidebarVisible(false)}>
                     <i className="fa-solid fa-file-alt"></i> Резюме
                     <i className="fa-solid fa-square-xmark" style={{ color: 'red' }}></i>
                 </NavLink>
 
-                <div className="admin-nav-title">Контент</div>
+                <div className="admin-nav__title">Контент</div>
 
-                <NavLink to="/news" className="admin-nav-item" onClick={() => setSidebarVisible(false)}>
+                <NavLink to="/news" className="admin-nav__item" onClick={() => setSidebarVisible(false)}>
                     <i className="fa-solid fa-newspaper"></i> Новости
                 </NavLink>
-                <NavLink to="/reviews" className="admin-nav-item" onClick={() => setSidebarVisible(false)}>
+                <NavLink to="/reviews" className="admin-nav__item" onClick={() => setSidebarVisible(false)}>
                     <i className="fa-solid fa-comments"></i> Отзывы
                     <i className="fa-solid fa-square-xmark" style={{ color: 'red' }}></i>
                 </NavLink>
-                <NavLink to="/questions" className="admin-nav-item" onClick={() => setSidebarVisible(false)}>
+                <NavLink to="/questions" className="admin-nav__item" onClick={() => setSidebarVisible(false)}>
                     <i className="fa-solid fa-question-circle"></i> Вопросы
                     <i className="fa-solid fa-square-xmark" style={{ color: 'red' }}></i>
                 </NavLink>
 
-                <div className="admin-nav-title">Пользователи</div>
+                <div className="admin-nav__title">Пользователи</div>
 
-                <NavLink to="/users" className="admin-nav-item" onClick={() => setSidebarVisible(false)}>
+                <NavLink to="/users" className="admin-nav__item" onClick={() => setSidebarVisible(false)}>
                     <i className="fa-solid fa-users"></i> Пользователи
                 </NavLink>
-                <NavLink to="/permissions" className="admin-nav-item" onClick={() => setSidebarVisible(false)}>
+                <NavLink to="/permissions" className="admin-nav__item" onClick={() => setSidebarVisible(false)}>
                     <i className="fa-solid fa-shield-halved"></i> Роли и разрешения
                 </NavLink>
 
-                <div className="admin-nav-title">Настройки</div>
+                <div className="admin-nav__title">Настройки</div>
 
-                <NavLink to="/settings" className="admin-nav-item" onClick={() => setSidebarVisible(false)}>
+                <NavLink to="/settings" className="admin-nav__item" onClick={() => setSidebarVisible(false)}>
                     <i className="fa-solid fa-cog"></i> Системные
                     <i className="fa-solid fa-square-xmark" style={{ color: 'red' }}></i>
                 </NavLink>
-                <NavLink to="/localization" className="admin-nav-item" onClick={() => setSidebarVisible(false)}>
+                <NavLink to="/localization" className="admin-nav__item" onClick={() => setSidebarVisible(false)}>
                     <i className="fa-solid fa-language"></i>Локализация
                 </NavLink>
 
-                <div className="admin-nav-title">Настройки данных</div>
-                <NavLink to="/locations" className="admin-nav-item" onClick={() => setSidebarVisible(false)}>
+                <div className="admin-nav__title">Настройки данных</div>
+                <NavLink to="/locations" className="admin-nav__item" onClick={() => setSidebarVisible(false)}>
                     <i className="fa-solid fa-location-dot"></i> Локации
                 </NavLink>
-                <NavLink to="/categories" className="admin-nav-item" onClick={() => setSidebarVisible(false)}>
+                <NavLink to="/categories" className="admin-nav__item" onClick={() => setSidebarVisible(false)}>
                     <i className="fa-solid fa-sitemap"></i> Категории
                 </NavLink>
 
-                <div className="admin-nav-title">Организация</div>
-                <NavLink to="/tasks" className="admin-nav-item" onClick={() => setSidebarVisible(false)}>
+                <div className="admin-nav__title">Организация</div>
+                <NavLink to="/tasks" className="admin-nav__item" onClick={() => setSidebarVisible(false)}>
                     <i className="fa-solid fa-tasks"></i> Задачи
                 </NavLink>
             </nav>

@@ -7,11 +7,11 @@ const StatCard = ({ value, metrics, title }) => {
 
     return (
         <div className="stat-card">
-            <div className="stat-card-title">{title}</div>
+            <div className="stat-card__title">{title}</div>
             <Tooltip text="Метрика">
-                <div className="stat-card-value">{value}</div>
+                <div className="stat-card__value">{value}</div>
             </Tooltip>
-            <div className={`stat-card-change ${isPositive ? "positive" : "negative"}`}>
+            <div className={`stat-card__change ${isPositive ? "positive" : "negative"}`}>
                 <i className={`fa-solid ${isPositive ? "fa-arrow-up" : "fa-arrow-down"}`}></i> {changePercent} за месяц
             </div>
         </div>

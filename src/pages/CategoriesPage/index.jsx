@@ -46,13 +46,13 @@ const CategoriesPage = () => {
                 <span href="/locations">Управление категориями</span>
             </nav>
             <div className="card admin-page">
-                <div className="card-body">
-                    <div className="card-header">
-                        <div className="d-flex justify-content-between align-items-center">
+                <div className="card__body">
+                    <div className="card__header">
+                        <div className="flex-column justify-content-between align-items-center">
                             <h2>Список категорий</h2>
                             <button
                                 onClick={onAddCategory}
-                                className="btn-admin btn-admin-primary btn-overlay"
+                                className="btn btn-primary btn-overlay"
                             >
                                 <i className="fa-solid fa-plus"></i> Категория
                             </button>
@@ -80,15 +80,11 @@ const CategoriesPage = () => {
                                             <tr key={category.id}>
                                                 <td>{category.id}</td>
                                                 <td>{category.name}</td>
-                                                <td>
-                                                    {category.parent
-                                                        ? category.parent.name
-                                                        : "—"}
-                                                </td>
+                                                <td>{category.parent ? category.parent.name : "—"}</td>
                                                 <td>
                                                     <div className="button-actions">
                                                         <button
-                                                            className="btn-admin btn-admin-primary mr-1"
+                                                            className="btn btn-primary mr-1"
                                                             onClick={() =>
                                                                 onEditCategory(
                                                                     category.id
@@ -98,7 +94,7 @@ const CategoriesPage = () => {
                                                             <i className="fa-solid fa-edit"></i>
                                                         </button>
                                                         <button
-                                                            className="btn-admin btn-admin-danger"
+                                                            className="btn btn-danger"
                                                             onClick={() =>
                                                                 onDeleteCategory(
                                                                     category.id
@@ -113,12 +109,7 @@ const CategoriesPage = () => {
                                         ))
                                     ) : (
                                         <tr>
-                                            <td
-                                                colSpan="6"
-                                                className="text-center"
-                                            >
-                                                Нет категорий
-                                            </td>
+                                            <td colSpan="6">Нет категорий</td>
                                         </tr>
                                     )}
                                 </tbody>

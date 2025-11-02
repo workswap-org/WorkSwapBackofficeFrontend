@@ -18,6 +18,8 @@ const TaskDetails = ({taskId}) => {
                 setTask(data.task || {});
                 setAuthor(data.author || {});
                 setExecutor(data.executor || {});
+
+                console.log(data);
             } catch (err) {
                 console.error(err);
             }
@@ -36,35 +38,35 @@ const TaskDetails = ({taskId}) => {
     return (
         <div className="task-details">
             <p className="task-detail">
-                <label className="task-detail-label">Название:</label> 
+                <h3 className="task-detail-title">Название:</h3> 
                 <span>{task.name}</span>
             </p>
             <p className="task-detail">
-                <label className="task-detail-label">Описание:</label> 
+                <h3 className="task-detail-title">Описание:</h3> 
                 <span>{task.description}</span>
             </p>
             <p className="task-detail">
-                <label className="task-detail-label">Статус:</label> 
+                <h3 className="task-detail-title">Статус:</h3> 
                 <span>{task.status}</span>
             </p>
 
             <br />
 
             <p className="task-detail">
-                <label className="task-detail-label">Автор:</label> 
+                <h3 className="task-detail-title">Автор:</h3> 
                 <span>{author.name}</span>
             </p>
 
-            {task.status === "COMPLETED" && (
+            {task.status === "Завершена" && (
                 <p className="task-detail">
-                    <label className="task-detail-label">Выполнил:</label> 
+                    <h3 className="task-detail-title">Выполнил:</h3> 
                     <span>{executor.name}</span>
                 </p>
             )}
 
-            {task.status === "IN_PROGRESS" && (
+            {task.status === "В процессе" && (
                 <p className="task-detail">
-                    <label className="task-detail-label">Выполняющий:</label> 
+                    <h3 className="task-detail-title">Выполняющий:</h3> 
                     <span>{executor.name}</span>
                 </p>
             )}
@@ -72,7 +74,7 @@ const TaskDetails = ({taskId}) => {
             <br />
 
             <p className="task-detail">
-                <label className="task-detail-label">Создана:</label> 
+                <h3 className="task-detail-title">Создана:</h3> 
                 <span>
                     {task.createdAt
                         ? new Date(task.createdAt).toLocaleString("ru-RU")
@@ -82,55 +84,55 @@ const TaskDetails = ({taskId}) => {
 
             {!task.completed && (
                 <p className="task-detail">
-                    <label className="task-detail-label">Дедлайн через:</label> 
+                    <h3 className="task-detail-title">Дедлайн через:</h3> 
                     <TimeCounter duration={task.duration} />
                 </p>
             )}
 
             {task.completed && (
                 <p className="task-detail">
-                    <label className="task-detail-label">Завершена:</label> 
+                    <h3 className="task-detail-title">Завершена:</h3> 
                     <span>{new Date(task.completed).toLocaleString("ru-RU")}</span>
                 </p>
             )}
 
             <div className="button-actions">
-                {(task.status === "CANCELED" || task.status === "NEW") && (
+                {(task.status === "Отменена" || task.status === "Новая") && (
                     <button
                         data-task={task.id}
-                        className="btn-admin btn-admin-primary pickup-task-btn"
+                        className="btn btn-primary pickup-task-btn"
                     >
                         <i className="fa-solid fa-download"></i>
                     </button>
                 )}
 
-                {user?.id === task.executorId && task.status === "IN_PROGRESS" && (
+                {user?.id === task.executorId && task.status === "В процессе" && (
                     <button
                         data-task={task.id}
-                        className="btn-admin btn-admin-confirm complete-task-btn"
+                        className="btn btn-confirm complete-task-btn"
                     >
                         <i className="fa-solid fa-check"></i>
                     </button>
                 )}
 
-                {((user?.id === task.executorId && task.status === "IN_PROGRESS") ||
+                {((user?.id === task.executorId && task.status === "В процессе") ||
                     task.status === "NEW") && (
                     <button
                         data-task={task.id}
-                        className="btn-admin btn-admin-danger cancel-task-btn"
+                        className="btn btn-danger cancel-task-btn"
                     >
                         <i className="fa-solid fa-trash"></i>
                     </button>
                 )}
 
-                {user?.id === executor.id && task.status === "IN_PROGRESS" && (
-                    <button className="btn-admin btn-admin-primary">
+                {user?.id === executor.id && task.status === "В процессе" && (
+                    <button className="btn btn-primary">
                         <i className="fa-solid fa-edit"></i>
                     </button>
                 )}
 
                 <button
-                    className="btn-admin btn-admin-gold comment-btn"
+                    className="btn btn-gold comment-btn"
                     data-task-id={task.id}
                 >
                     <i className="fa-solid fa-message"></i>

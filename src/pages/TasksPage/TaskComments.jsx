@@ -56,7 +56,7 @@ const TaskComments = ({taskId}) => {
                                 <button
                                     data-comment={comment.id}
                                     data-task={taskId}
-                                    className="btn-admin btn-admin-danger delete-taskcomment-btn"
+                                    className="btn btn-danger delete-taskcomment-btn"
                                     style={{ height: "auto", right: 0 }}
                                 >
                                     <i className="fa-solid fa-trash"></i>

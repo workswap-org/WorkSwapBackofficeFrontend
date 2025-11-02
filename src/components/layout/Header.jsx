@@ -17,22 +17,11 @@ const pageTitles = {
 
 const Header = ({ user, toggleSidebar }) => {
 
-    const { activePage } = useActivePage();
+    const activePage = useActivePage();
     
     return (
       <header className="admin-header">
             <h1>{pageTitles[activePage]}</h1>
-
-            <Link
-                className="logout-btn"
-                to="/logout"
-            >
-                <i
-                    className="fa fa-sign-out fa-lg"
-                    aria-hidden="true"
-                    style={{ transform: "rotate(180deg)" }}
-                ></i>
-            </Link>
 
             <div className="admin-user">
                 <span>{user?.name || "Администратор"}</span>
@@ -41,6 +30,16 @@ const Header = ({ user, toggleSidebar }) => {
                     size={40}          // размер аватара, например 40px
                     className="p40-avatar" // дополнительные классы, если нужны
                 />
+                <Link
+                    className="logout-btn"
+                    to="/logout"
+                >
+                    <i
+                        className="fa fa-sign-out fa-lg"
+                        aria-hidden="true"
+                        style={{ transform: "rotate(180deg)" }}
+                    ></i>
+                </Link>
             </div>
 
             <div className="mobile-menu-btn" onClick={() => toggleSidebar()}>

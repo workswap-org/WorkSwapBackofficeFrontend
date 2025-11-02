@@ -56,10 +56,10 @@ const PermissionsPage = () => {
                 <div className="card-body flex-column">
                     <div className="card-header">
                         <div className="btn-actions-group">
-                            <button onClick={() => setRoleCreateModal(true)} className="btn-admin btn-admin-primary">
+                            <button onClick={() => setRoleCreateModal(true)} className="btn btn-primary">
                                 <i className="fa-solid fa-plus"></i> Роль
                             </button>
-                            <button onClick={() => setPermissionCreateModal(true)} className="btn-admin btn-admin-primary">
+                            <button onClick={() => setPermissionCreateModal(true)} className="btn btn-primary">
                                 <i className="fa-solid fa-plus"></i> Разрешение
                             </button>
                         </div>

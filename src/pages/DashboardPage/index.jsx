@@ -8,7 +8,7 @@ const DashboardPage = () => {
         <>
             <StatGrid />
             <div className="card admin-page">
-                <div className="card-body">
+                <div className="card__body">
                     
                     <h2>Последние объявления</h2>
                     <RecentListingsTable />

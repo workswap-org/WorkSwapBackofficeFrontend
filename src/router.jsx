@@ -28,18 +28,21 @@ const AppRouter = () => {
     return (
         <>
             <Routes>
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-                <Route path="/login/success" element={<LoginSuccessPage />} />
-                <Route path="/logout" element={<LogoutPage />} />
+
+                <Route index element={<Navigate to="/dashboard" replace />} />
 
                 {/* Один общий Layout */}
-                <Route path="/" element={<AuthGuard />}>
-                    <Route path="/" element={<Layout />}>
+                <Route path="/" element={<Layout />}>
+
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/login/success" element={<LoginSuccessPage />} />
+                    <Route path="/logout" element={<LogoutPage />} />
+                    
+                    <Route path="/" element={<AuthGuard />}>
                         {/* публичные страницы */}
 
                         <Route element={<PrivateRoute />}>
-                            <Route index element={<Navigate to="/dashboard" replace />} />
 
                             <Route path="categories" element={<CategoriesPage />} />
                             <Route path="permissions" element={<PermissionsPage />} />
