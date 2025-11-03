@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Sidebar, Header } from "@/components";
-import { useAuth, apiFetch } from "@core/lib";
+import { useAuth, apiFetchJson } from "@core/lib";
 import { useState } from "react";
 
 export default function Layout() {
@@ -12,7 +12,7 @@ export default function Layout() {
     }
     
     const handleLogout = () => {
-        apiFetch("/logout", { method: "POST", credentials: "include" }).then(() => {});
+        apiFetchJson("/logout", { method: "POST", credentials: "include" }).then(() => {});
     };
 
     return (
