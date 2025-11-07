@@ -1,5 +1,4 @@
 .categories-page {
-    display: flex;
-    flex-direction: row;
+    @include flex-row;
     min-height: 0;
 }

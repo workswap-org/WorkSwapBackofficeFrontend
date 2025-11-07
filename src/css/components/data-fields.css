@@ -1,8 +1,7 @@
 /* Группы полей формы */
 .form-group {
     margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
 }
 
 .form-group label {

@@ -14,7 +14,7 @@ import './pages/list-page.css';
 import './pages/localization-page.css';
 import './pages/main-admin-page.scss'; // scss
 import './pages/news-edit-page.css';
-import './pages/permission-page.css';
+import './pages/permission-page.scss';
 import './pages/tasks-page.scss'; // scss
 import './pages/view-user.css';
 

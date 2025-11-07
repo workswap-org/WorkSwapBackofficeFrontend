@@ -41,12 +41,10 @@
 
 .locations-container {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
 }
 
 .locations-main {
-    display: flex;
-    flex-direction: row; 
+    @include flex-row;
     gap: 0.5rem;
 }

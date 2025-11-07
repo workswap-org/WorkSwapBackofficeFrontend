@@ -17,16 +17,14 @@
 }
 
 .tasks-list-container {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     width: 100%;
 }
 
 .tasks-list {
     padding: 1rem;
     text-align: center;
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     overflow: auto;
 }
 
@@ -39,8 +37,7 @@
 .tasks-by-user {
     padding: 1rem;
     text-align: center;
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
 }
 
 .tasks-list-header {
@@ -91,8 +88,7 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     width: 300px;
     max-width: 100%;
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     gap: 0.5rem;
 
     visibility: hidden;
@@ -111,8 +107,7 @@
     }
 
     .task-detail {
-        display: flex;
-        flex-direction: column;
+        @include flex-column;
         text-align: left;
 
         .task-detail-title {
@@ -165,36 +160,31 @@
 }
 
 .task-comments {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     gap: 0.5rem;
 }
 
 .task-comments-container {
-    display: flex; 
-    flex-direction: column; 
+    @include flex-column;
     gap: 0.5rem;
 }
 
 .tasks-aside {
-    display: flex; 
-    flex-direction: column; 
+    @include flex-column;
     gap: 1rem;
     width: 300px;
     overflow: auto;
 }
 
 .task-page-container {
-    display: flex; 
-    flex-direction: row;
+    @include flex-row;
     flex: 1;
     gap: 1rem;
     min-height: 0;
 }
 
 .global-tasks-container {
-    display: flex; 
-    flex-direction: column;
+    @include flex-column;
     flex: 1;
     min-height: 0;
 

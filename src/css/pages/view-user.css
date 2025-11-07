@@ -1,20 +1,6 @@
 
 /* Дополнительные стили для страницы редактирования */
 
-.form-check {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-.form-check-input {
-    margin-right: 0.5rem;
-}
-
-.form-check-label {
-    margin-bottom: 0;
-}
-
 .mt-2 {
     margin-top: 0.5rem;
 }
@@ -62,14 +48,12 @@ admin-form-control {
 }
 
 .user-card-body {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     gap: 1rem;
 }
 
 .user-info-item {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     border-bottom: 2px solid var(--border-color);
     padding: 0.4rem;
 }

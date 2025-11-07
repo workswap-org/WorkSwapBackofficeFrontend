@@ -1,3 +1,5 @@
+@use "@core/css/components/global-mixins" as *;
+
 .btn {
     display: inline-block;
     padding: 0.5rem 1rem;
@@ -9,7 +11,7 @@
     transition: all 0.3s ease;
     text-align: center;
 
-    @media (max-width: 600px) {
+    @include mobile {
         width: 100%;
         margin-bottom: 0.5rem;
     }
@@ -48,8 +50,7 @@
     }
 
     &.login-button {
-        display: flex;
-        flex-direction: row;
+        @include flex-row;
     }
 
     &.btn-sm {

@@ -1,20 +1,6 @@
 
 /* Дополнительные стили для страницы редактирования */
 
-.form-check {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-.form-check-input {
-    margin-right: 0.5rem;
-}
-
-.form-check-label {
-    margin-bottom: 0;
-}
-
 .btn i {
     margin-right: 0.25rem;
 }

@@ -1,3 +1,4 @@
+@use "@core/css/components/global-mixins" as *;
 
 /* Карточки статистики */
 .stats-grid {
@@ -6,7 +7,7 @@
     gap: 1.5rem;
     margin-bottom: 2rem;
 
-    @media (max-width: 992px) {
+    @include tablet-lg {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     }
 
@@ -16,7 +17,7 @@
         padding: 1.5rem;
         box-shadow: 0 2px 4px var(--shadow-color);
 
-        @media (max-width: 992px) {
+        @include tablet-lg {
             padding: 1rem;
         }
 

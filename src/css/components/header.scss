@@ -1,3 +1,5 @@
+@use "@core/css/components/global-mixins" as *;
+
 .admin-header {
     display: flex;
     justify-content: space-between;
@@ -10,14 +12,14 @@
     z-index: 100;
     margin-bottom: 2rem;
 
-    @media (max-width: 992px) {
+    @include tablet-lg {
         padding: 0.5rem 1rem;
     }
 
     h1 {
         white-space: nowrap;
 
-        @media (max-width: 992px) {
+        @include tablet-lg {
             overflow: hidden;
             text-overflow: ellipsis;
             font-size: 1.3rem;
@@ -27,7 +29,7 @@
     .mobile-menu-btn {
         display: none;
 
-        @media (max-width: 992px) {
+        @include tablet-lg {
             display: block;
         }
     }
@@ -37,7 +39,7 @@
         align-items: center;
         gap: 1rem;
 
-        @media (max-width: 992px) {
+        @include tablet-lg {
             display: none;
             align-items: center;
             gap: 1rem;
@@ -60,7 +62,7 @@
 
             text-decoration: none;
 
-            @media (max-width: 992px) {
+            @include tablet-lg {
                 display: none;
             }
 

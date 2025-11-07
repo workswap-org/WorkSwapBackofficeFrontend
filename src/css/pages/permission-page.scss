@@ -1,6 +1,7 @@
+@use "@core/css/components/global-mixins" as *;
+
 .roles-list {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     border-right: 2px solid var(--border-color);
     width: 170px;
     height: 100%;
@@ -29,16 +30,14 @@
 }
 
 .permissions-list {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     overflow: auto;
     flex: 1;
 }
 
 .permission-item {
     padding: 1rem;
-    display: flex;
-    flex-direction: row;
+    @include flex-row;
     gap: 2rem;
     border-bottom: 1px dashed var(--border-color);
     justify-content: space-between;
@@ -74,8 +73,7 @@ input.permission-comment {
 }
 
 .page-container {
-    display: flex;
-    flex-direction: row;
+    @include flex-row;
     padding: 1rem;
     flex: 1;
     gap: 0.5rem;
@@ -113,7 +111,7 @@ input.permission-comment {
     z-index: 100;
 }
 
-@media (max-width: 600px) {
+@include mobile {
     .roles-list {
         transform: translateX(-120%);
         position: absolute;
