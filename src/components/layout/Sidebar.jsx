@@ -10,7 +10,10 @@ export default function Sidebar({ sidebarVisible, setSidebarVisible}) {
                 </a>
             </div>
 
-            <ThemeChanger />
+            <div className="theme-container">
+                <ThemeChanger />
+            </div>
+            
 
             <nav className="admin-nav">
                 <div className="admin-nav__title">Основное</div>
