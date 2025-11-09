@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { getRecentUsers } from "@core/lib";
+import { FormattedDate } from "@core/components"
+import { Link } from "react-router-dom";
 
 const RecentListingsTable = () => {
 
@@ -41,16 +43,12 @@ const RecentListingsTable = () => {
                             <td>#{user.id}</td>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{new Date(user.createdAt).toLocaleDateString("ru-RU")}</td>
+                            <td><FormattedDate isoDate={user.createdAt} format="DMY"/></td>
+                            <td>{user.status}</td>
                             <td>
-                                <span className={`badge ${user.enabled ? "bg-success" : "bg-danger"}`}>
-                                    {user.enabled ? "Активен" : "Заблокирован"}
-                                </span>
-                            </td>
-                            <td>
-                                <a href={`/user/${user.id}`} className="btn btn-primary">
+                                <Link to={`/user/${user.id}`} className="btn btn-primary">
                                     <i className="fa-solid fa-user-cog"></i>
-                                </a>
+                                </Link>
                             </td>
                         </tr>
                     ))

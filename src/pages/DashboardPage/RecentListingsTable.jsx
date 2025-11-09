@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { getRecentListings } from "@core/lib";
 import {
     PriceTypes,
-    DeleteBtn
+    DeleteBtn,
+    FormattedDate
 } from "@core/components";
 
 const RecentListingsTable = () => {
@@ -15,6 +16,7 @@ const RecentListingsTable = () => {
                 const res = await getRecentListings(3);
                 const data = await res;
                 setListings(data.listings || []);
+                console.log(data.listings);
             } catch (err) {
                 console.error(err);
             }
@@ -47,10 +49,9 @@ const RecentListingsTable = () => {
                             <td>{listing.localizedTitle}</td>
                             <td>{listing.author?.name}</td>
                             <td>
-                                {/* Здесь можно вставить компонент PriceTypes */}
                                 <PriceTypes listing={listing} />
                             </td>
-                            <td>{new Date(listing.createdAt).toLocaleDateString("ru-RU")}</td>
+                            <td><FormattedDate isoDate={listing.publishedAt} format="DMY"/></td>
                             <td>
                                 <div className="button-actions">
                                     <a href={`/listing/${listing.id}`} className="btn btn-secondary mr-1">
