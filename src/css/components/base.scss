@@ -47,10 +47,6 @@ img {
     height: fit-content;
     @include flex-column;
 
-    &.admin-page {
-        flex: 1;
-    }
-
     &__body {
         @include flex-column;
         padding: 1rem;

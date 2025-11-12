@@ -9,31 +9,18 @@
     gap: 1.5rem;
 }
 
-.admin-table td {
-    max-width: 250px;
-    text-align: left;
-}
-
-tr.draggable {
-    cursor: move;
-}
-
-tr.drag-over {
-    background-color: #eef;
-}
-
 .table-head {
     position: relative;
-}
 
-.table-head:hover .overlay-actions {
-    display: block;
+    &:hover .overlay-actions {
+        display: block;
+    }
 }
 
 .localization-item {
     position: relative;
-}
 
-.localization-item:hover .overlay-actions {
-    display: block;
+    &:hover .overlay-actions {
+        display: block;
+    }
 }

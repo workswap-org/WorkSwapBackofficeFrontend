@@ -12,7 +12,7 @@ const TasksPage = () => {
         <>
             <nav className="breadcrumbs">
                 <a href="/dashboard">Панель управления</a>
-                <span> / </span>
+                <span className="divider">/</span>
                 <span href="/tasks">Задачи</span>
             </nav>
             <div className="card admin-page">
@@ -22,12 +22,10 @@ const TasksPage = () => {
                     </div>
                     <div className="task-page-container">
                         <div className="tasks-aside">
-                            <div id="taskDetailsContainer">
-                                <TaskDetails 
-                                    taskId={selectedTaskId}
-                                />
-                            </div>
-                            <div className="task-comments-container" id="taskCommentsContainer">
+                            <TaskDetails 
+                                taskId={selectedTaskId}
+                            />
+                            <div className="task-comments-container">
                                 <TaskComments 
                                     taskId={selectedTaskId}
                                 />

@@ -2,23 +2,23 @@ const buildCategoryTree = (categories) => {
     const map = new Map();
     const roots = [];
 
-    // создаём Map для быстрого доступа по id
+    // Создаём копии категорий с пустыми children
     categories.forEach(cat => map.set(cat.id, { ...cat, children: [] }));
 
-    categories.forEach(cat => {
+    // Формируем дерево
+    map.forEach(cat => {
         if (cat.parentId) {
             const parent = map.get(cat.parentId);
-            if (parent) {
-                parent.children.push(map.get(cat.id));
-            }
+            if (parent) parent.children.push(cat);
         } else {
-            roots.push(map.get(cat.id));
+            roots.push(cat);
         }
     });
 
     return roots;
 };
 
+// Компонент дерева категорий
 const CategoryTree = ({ categories }) => {
     const tree = buildCategoryTree(categories);
 
@@ -26,14 +26,18 @@ const CategoryTree = ({ categories }) => {
         <ul>
             {nodes.map(node => (
                 <li key={node.id}>
-                    <span>{node.translate}</span>
+                    <span>{node.name}</span>
                     {node.children.length > 0 && renderTree(node.children)}
                 </li>
             ))}
         </ul>
     );
 
-    return renderTree(tree);
+    return (
+        <div className="categories-list">
+            {renderTree(tree)}
+        </div>
+    );
 };
 
 export default CategoryTree;

@@ -48,7 +48,7 @@ const PermissionsPage = () => {
         <>
             <nav className="breadcrumbs">
                 <a href="/dashboard">Панель управления</a>
-                <span> / </span>
+                <span className="divider">/</span>
                 <span href="/tasks">Роли и разрешения</span>
             </nav>
             
