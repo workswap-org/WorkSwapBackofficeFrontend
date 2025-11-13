@@ -10,11 +10,6 @@ const TasksPage = () => {
 
     return (
         <>
-            <nav className="breadcrumbs">
-                <a href="/dashboard">Панель управления</a>
-                <span className="divider">/</span>
-                <span href="/tasks">Задачи</span>
-            </nav>
             <div className="card admin-page">
                 <div className="card__body">
                     <div className="card__header">

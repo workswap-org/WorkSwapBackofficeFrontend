@@ -46,12 +46,6 @@ const PermissionsPage = () => {
 
     return (
         <>
-            <nav className="breadcrumbs">
-                <a href="/dashboard">Панель управления</a>
-                <span className="divider">/</span>
-                <span href="/tasks">Роли и разрешения</span>
-            </nav>
-            
             <div className="card admin-page">
                 <div className="card-body flex-column">
                     <div className="card-header">

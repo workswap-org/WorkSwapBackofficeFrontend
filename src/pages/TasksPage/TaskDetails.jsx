@@ -97,7 +97,7 @@ const TaskDetails = ({taskId}) => {
             )}
 
             <div className="button-actions">
-                {(task.status === "Отменена" || task.status === "Новая") && (
+                {(task.status === "Отменена" || task.status.code === "NEW") && (
                     <button
                         data-task={task.id}
                         className="btn btn-primary pickup-task-btn"
@@ -106,7 +106,7 @@ const TaskDetails = ({taskId}) => {
                     </button>
                 )}
 
-                {user?.id === task.executorId && task.status === "В процессе" && (
+                {user?.id === task.executorId && task.status.code === "IN_PROGRESS" && (
                     <button
                         data-task={task.id}
                         className="btn btn-confirm complete-task-btn"
@@ -115,7 +115,7 @@ const TaskDetails = ({taskId}) => {
                     </button>
                 )}
 
-                {((user?.id === task.executorId && task.status === "В процессе") ||
+                {((user?.id === task.executorId && task.status.code === "IN_PROGRESS") ||
                     task.status === "NEW") && (
                     <button
                         data-task={task.id}
@@ -125,7 +125,7 @@ const TaskDetails = ({taskId}) => {
                     </button>
                 )}
 
-                {user?.id === executor.id && task.status === "В процессе" && (
+                {user?.id === executor.id && task.status.code === "IN_PROGRESS" && (
                     <button className="btn btn-primary">
                         <i className="fa-solid fa-edit"></i>
                     </button>
