@@ -23,8 +23,8 @@ const TaskTable = ({ onSelectTask }) => {
             if (taskStatus) params.status = taskStatus;
 
             try {
-                const res = await getSortedTasks(params);
-                const data = await res;
+                const data = await getSortedTasks(params);
+                console.log(data)
                 setTasks(data.tasks || []);
             } catch (err) {
                 console.error(err);
@@ -38,8 +38,7 @@ const TaskTable = ({ onSelectTask }) => {
     // Загружаем метаданные только один раз при загрузке страницы
         async function loadSettings() {
             try {
-                const res = await getTasksMetadata();
-                const data = await res;
+                const data = await getTasksMetadata();
                 setTaskTypeList(data.taskTypeList || []);
                 setTaskStatusList(data.taskStatusList || []);
             } catch (err) {

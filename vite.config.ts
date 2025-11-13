@@ -10,7 +10,9 @@ const __dirname = path.dirname(__filename)
 
 export default defineConfig({
     plugins: [
-        react(), 
+        react({
+            jsxRuntime: 'automatic'
+        }), 
         tsconfigPaths()
     ],
     resolve: {

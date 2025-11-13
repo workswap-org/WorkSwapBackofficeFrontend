@@ -1,145 +1,110 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { TimeCounter } from "@core/components";
 import { useAuth, getTaskDetails } from "@core/lib";
 
 const TaskDetails = ({taskId}) => {
 
     const { user } = useAuth();
-    const [task, setTask] = useState([]);
-    const [author, setAuthor] = useState([]);
-    const [executor, setExecutor] = useState([]);
+    const [task, setTask] = useState(null);
+    const [author, setAuthor] = useState(null)
+    const [executor, setExecutor] = useState(null)
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         if (!taskId) return;
+        setLoading(true);
+        setError(null);
 
-        async function loadTaskDetails() {
-            try {
-                const data = await getTaskDetails(taskId);
-                setTask(data.task || {});
-                setAuthor(data.author || {});
-                setExecutor(data.executor || {});
-
-                console.log(data);
-            } catch (err) {
-                console.error(err);
-            }
-        }
-        
-        loadTaskDetails();
-
-        document.querySelector(".task-details")?.classList.add("active");
-
-        return () => {
-            // при размонтировании убираем
-            document.querySelector(".task-details")?.classList.remove("active");
-        };
+        getTaskDetails(taskId)
+            .then((res) => {
+                setTask(res.task || []);
+                setAuthor(res.author || []);
+                setExecutor(res.executor || [])
+            })
+            .catch(setError)
+            .finally(() => setLoading(false));
     }, [taskId]);
 
+    const isInProgress = task?.status?.code === "IN_PROGRESS";
+    const isCanceled = task?.status?.code === "CANCELED";
+    const isNew = task?.status?.code === "NEW";
+    const isCompleted = Boolean(task?.completed);
+
+    const canPickUp = isNew || isCanceled;
+    const canComplete = user?.id === task?.executorId && isInProgress;
+    const canCancel = canComplete || isNew;
+    const canEdit = user?.id === executor?.id && isInProgress;
+
+    const formattedCreatedAt = useMemo(
+        () => (task?.createdAt ? new Date(task.createdAt).toLocaleString("ru-RU") : "-"),
+        [task?.createdAt]
+    );
+    const formattedCompletedAt = useMemo(
+        () => (task?.completed ? new Date(task.completed).toLocaleString("ru-RU") : null),
+        [task?.completed]
+    );
+
+    if (loading) return <div className="task-details loading">Загрузка...</div>;
+    if (error) return <div className="task-details error">Ошибка загрузки</div>;
+    if (!taskId) return null;
+
     return (
-        <div className="task-details">
-            <p className="task-detail">
-                <h3 className="task-detail-title">Название:</h3> 
-                <span>{task.name}</span>
-            </p>
-            <p className="task-detail">
-                <h3 className="task-detail-title">Описание:</h3> 
-                <span>{task.description}</span>
-            </p>
-            <p className="task-detail">
-                <h3 className="task-detail-title">Статус:</h3> 
-                <span>{task.status}</span>
-            </p>
+        <div className={`task-details ${taskId ? "active" : ""}`}>
+            <TaskDetail label="Название" value={task?.name} />
+            <TaskDetail label="Описание" value={task?.description} />
+            <TaskDetail label="Статус" value={task?.status?.name} />
 
             <br />
 
-            <p className="task-detail">
-                <h3 className="task-detail-title">Автор:</h3> 
-                <span>{author.name}</span>
-            </p>
+            <TaskDetail label="Автор" value={author?.name} />
 
-            {task.status === "Завершена" && (
-                <p className="task-detail">
-                    <h3 className="task-detail-title">Выполнил:</h3> 
-                    <span>{executor.name}</span>
-                </p>
-            )}
-
-            {task.status === "В процессе" && (
-                <p className="task-detail">
-                    <h3 className="task-detail-title">Выполняющий:</h3> 
-                    <span>{executor.name}</span>
-                </p>
-            )}
+            {isCanceled && <TaskDetail label="Выполнил" value={executor?.name} />}
+            {isInProgress && <TaskDetail label="Выполняющий" value={executor?.name} />}
 
             <br />
 
-            <p className="task-detail">
-                <h3 className="task-detail-title">Создана:</h3> 
-                <span>
-                    {task.createdAt
-                        ? new Date(task.createdAt).toLocaleString("ru-RU")
-                        : "-"}
-                </span>
-            </p>
+            <TaskDetail label="Создана" value={formattedCreatedAt} />
 
-            {!task.completed && (
-                <p className="task-detail">
-                    <h3 className="task-detail-title">Дедлайн через:</h3> 
-                    <TimeCounter duration={task.duration} />
-                </p>
+            {!isCompleted && (
+                <TaskDetail
+                    label="Дедлайн через"
+                    value={<TimeCounter duration={task?.duration} />}
+                />
             )}
-
-            {task.completed && (
-                <p className="task-detail">
-                    <h3 className="task-detail-title">Завершена:</h3> 
-                    <span>{new Date(task.completed).toLocaleString("ru-RU")}</span>
-                </p>
-            )}
+            {isCompleted && <TaskDetail label="Завершена" value={formattedCompletedAt} />}
 
             <div className="button-actions">
-                {(task.status === "Отменена" || task.status.code === "NEW") && (
-                    <button
-                        data-task={task.id}
-                        className="btn btn-primary pickup-task-btn"
-                    >
-                        <i className="fa-solid fa-download"></i>
-                    </button>
+                {canPickUp && (
+                    <ActionButton type="primary" icon="download" taskId={task?.id} />
                 )}
-
-                {user?.id === task.executorId && task.status.code === "IN_PROGRESS" && (
-                    <button
-                        data-task={task.id}
-                        className="btn btn-confirm complete-task-btn"
-                    >
-                        <i className="fa-solid fa-check"></i>
-                    </button>
+                {canComplete && (
+                    <ActionButton type="confirm" icon="check" taskId={task?.id} />
                 )}
-
-                {((user?.id === task.executorId && task.status.code === "IN_PROGRESS") ||
-                    task.status === "NEW") && (
-                    <button
-                        data-task={task.id}
-                        className="btn btn-danger cancel-task-btn"
-                    >
-                        <i className="fa-solid fa-trash"></i>
-                    </button>
+                {canCancel && (
+                    <ActionButton type="danger" icon="trash" taskId={task?.id} />
                 )}
-
-                {user?.id === executor.id && task.status.code === "IN_PROGRESS" && (
-                    <button className="btn btn-primary">
-                        <i className="fa-solid fa-edit"></i>
-                    </button>
-                )}
-
-                <button
-                    className="btn btn-gold comment-btn"
-                    data-task-id={task.id}
-                >
-                    <i className="fa-solid fa-message"></i>
-                </button>
+                {canEdit && <ActionButton type="primary" icon="edit" />}
+                <ActionButton type="gold" icon="message" taskId={task?.id} />
             </div>
         </div>
     );
 };
+
+const TaskDetail = ({ label, value }) => (
+    <div className="task-detail">
+        <h3 className="task-detail-title">{label}:</h3>
+        <span>{value || "-"}</span>
+    </div>
+);
+
+const ActionButton = ({ type, icon, taskId }) => (
+    <button
+        className={`btn btn-${type}`}
+        data-task={taskId}
+    >
+        <i className={`fa-solid fa-${icon}`}></i>
+    </button>
+);
 
 export default TaskDetails;

@@ -7,7 +7,7 @@ const TaskCreateModal = () => {
 
     return (
         <>
-            <button className="btn btn-primary">+ Создать задачу</button>
+            <button className="btn btn-primary" onClick={() => setTaskModalOpen(true)}>+ Создать задачу</button>
             <Modal
                 isOpen={isTaskModalOpen}
                 onClose={() => setTaskModalOpen(false)}

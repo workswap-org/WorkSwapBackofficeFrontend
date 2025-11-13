@@ -13,10 +13,8 @@ const RecentListingsTable = () => {
     useEffect(() => {
         const fetchListings = async () => {
             try {
-                const res = await getRecentListings(3);
-                const data = await res;
-                setListings(data.listings || []);
-                console.log(data.listings);
+                const data = await getRecentListings(3);
+                setListings(data || []);
             } catch (err) {
                 console.error(err);
             }

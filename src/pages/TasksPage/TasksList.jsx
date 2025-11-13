@@ -26,21 +26,21 @@ const TasksList = ({ tasks, user, onSelectTask = () => {}}) => {
                             onClick={() => onSelectTask(task.id)}
                         >
                             <td className={
-                                task.status === "Новая" ? "status-new" :
-                                task.status === "В процессе" ? "status-progress" :
-                                task.status === "Завершена" ? "status-done" :
+                                task.status?.code === "NEW" ? "status-new" :
+                                task.status?.code === "IN_PROGRESS" ? "status-progress" :
+                                task.status?.code === "COMPLETED" ? "status-done" :
                                 "status-cancelled"
                             }>
-                                {task.status === "Новая" && (
+                                {task.status?.code === "NEW" && (
                                     <i className="fa-solid fa-file-circle-plus"></i>
                                 )}
-                                {task.status === "В процессе" && (
+                                {task.status?.code === "IN_PROGRESS" && (
                                     <i className="fa-solid fa-timer"></i>
                                 )}
-                                {task.status === "Завершена" && (
+                                {task.status?.code === "COMPLETED" && (
                                     <i className="fa-solid fa-badge-check"></i>
                                 )}
-                                {task.status === "Отменена" && (
+                                {task.status?.code === "CANCELED" && (
                                     <i className="fa-solid fa-ban"></i>
                                 )}
                             </td>
@@ -48,7 +48,7 @@ const TasksList = ({ tasks, user, onSelectTask = () => {}}) => {
                             <td>{task.name}</td>
                             <td>{task.taskType}</td>
                             <td>
-                                {task.status !== "Завершена" ? (
+                                {task.status?.code !== "COMPLETED" ? (
                                     <span>{/* сюда можно вставить твой timeCounter компонент */}</span>
                                 ) : (
                                     <Avatar
@@ -60,7 +60,7 @@ const TasksList = ({ tasks, user, onSelectTask = () => {}}) => {
                             </td>
                             <td className="overlay-td">
                                 <div className="button-actions task-actions">
-                                    {(task.status.code === "CANCELED" || task.status.code === "NEW") && (
+                                    {(task.status?.code === "CANCELED" || task.status.code === "NEW") && (
                                         <button
                                             data-task={task.id}
                                             className="btn btn-primary pickup-task-btn"
@@ -91,7 +91,7 @@ const TasksList = ({ tasks, user, onSelectTask = () => {}}) => {
                                         </>
                                     )}
 
-                                    {task.status.code === "NEW" && (
+                                    {task.status?.code === "NEW" && (
                                         <button
                                             data-task={task.id}
                                             className="btn btn-danger cancel-task-btn"
