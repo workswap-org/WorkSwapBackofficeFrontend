@@ -11,7 +11,7 @@ const RecentListingsTable = () => {
         const loadUsers = async () => {
             try {
                 const data = await getRecentUsers(3);
-                setUsers(data.users);
+                setUsers(data);
             } catch (err) {
                 console.error(err);
             }
