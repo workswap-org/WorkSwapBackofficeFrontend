@@ -21,6 +21,7 @@
     "react-router-dom": "^7.8.2",
     "react-select": "^5.10.2",
     "react-transition-group": "^4.4.5",
+    "rollup": "^4.53.2",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
