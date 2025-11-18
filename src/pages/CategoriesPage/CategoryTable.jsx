@@ -5,6 +5,7 @@ const CategoryTable = ({
     onEditCategory,
     onDeleteCategory
 }) => {
+    
     return (
         <div className="admin-table-wrapper" id="categoriesTable">
             <table className="admin-table">
