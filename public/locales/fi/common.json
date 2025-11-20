@@ -17,11 +17,13 @@
         "popularity": "Näyttökertojen mukaan"
     },
     "priceTypes": {
-        "fixed": "€",
-        "per-hour": "€ / tunti",
-        "per-day": "€ / päivä",
-        "negotiable": "Sop.hinta",
-        "swap": "Vaihto",
+        "FIXED": "€",
+        "PER_HOUR": "€ / tunti",
+        "PER_DAY": "€ / päivä",
+        "NEGOTIABLE": "Sop.hinta",
+        "SWAP": "Vaihto",
+        "FREE": "Ilmainen",
+        "WANTED_FREE": "Halutaan ilmaiseksi",
         "null": ""
     },
     "statuses": {
@@ -50,7 +52,7 @@
         "views": "Näytöt",
         "rating": "Arvostelu",
         "contacts": "Yhteystiedot",
-        "translations": "Ilmoituksen käännökset",
+        "translations": "Julkaisukielet",
         "status": {
             "listing": "Ilmoituksen tila",
             "event": {
@@ -89,6 +91,7 @@
         },
 
         "settings": {
+            "main": "Yleiset asetukset",
             "event": "Tapahtuman asetukset",
             "product": "Tuotteen asetukset",
             "service": "Palvelun asetukset"
@@ -102,7 +105,7 @@
         "settings": "Käyttäjäasetukset",
         "security": "Turvallisuus",
         "listingCreate": "Ilmoituksen luominen",
-        "listingEdit": "Hallinnoi ilmoitusta",
+        "listingManage": "Hallinnoi ilmoitusta",
         "listingDrafts": "Omat luonnokset"
     },
     "fallbacks": {
@@ -133,6 +136,11 @@
             "myLanguages": "Puhumani kielet",
             "myLocation": "Sijaintini",
             "bio": "Tietoa minusta"
+        },
+        "sections": {
+            "profile": "Profiili",
+            "privacy": "Yksityisyys",
+            "preferences": "Asetukset"
         }
     },
     "messenger": {
@@ -169,5 +177,12 @@
 
     "listingCreate": {
         "selectType": "Minkä ilmoituksen haluat luoda?"
+    },
+    "listingManage": {
+        "sections": {
+            "SETTINGS": "Asetukset",
+            "ANALYTICS": "Analytiikka",
+            "MESSAGES": "Viestit"
+        }
     }
 }

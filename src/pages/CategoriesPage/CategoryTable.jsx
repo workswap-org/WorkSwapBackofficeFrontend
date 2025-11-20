@@ -6,6 +6,9 @@ const CategoryTable = ({
     onDeleteCategory
 }) => {
     return (
+
+        //тестовый коммент
+        
         <div className="admin-table-wrapper" id="categoriesTable">
             <table className="admin-table">
                 <thead>

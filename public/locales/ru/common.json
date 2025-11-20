@@ -17,11 +17,13 @@
         "popularity": "По просмотрам"
     },
     "priceTypes": {
-        "fixed": "€",
-        "per-hour": "€ / час",
-        "per-day": "€ / день",
-        "negotiable": "Договорная",
-        "swap": "Обмен",
+        "FIXED": "€",
+        "PER_HOUR": "€ / час",
+        "PER_DAY": "€ / день",
+        "NEGOTIABLE": "Договорная",
+        "SWAP": "Обмен",
+        "FREE": "Бесплатно",
+        "WANTED_FREE": "Ищу бесплатно",
         "null": ""
     },
     "statuses": {
@@ -51,7 +53,7 @@
         "views": "Просмотры",
         "rating": "Рейтинг",
         "contacts": "Контактная информация",
-        "translations": "Переводы объявления",
+        "translations": "Языки публикации",
         "status": {
             "listing": "Статус объявления",
             "event": {
@@ -90,6 +92,7 @@
         },
 
         "settings": {
+            "main": "Общие настройки",
             "event": "Настройки события",
             "product": "Настройки товара",
             "service": "Настройки услуги"
@@ -104,7 +107,7 @@
         "settings": "Настройки пользователя",
         "security": "Безопасность",
         "listingCreate": "Создание объявления",
-        "listingEdit": "Управление объявлением",
+        "listingManage": "Управление объявлением",
         "listingDrafts": "Мои черновики"
     },
 
@@ -138,6 +141,11 @@
             "myLanguages": "Языки которыми я владею",
             "myLocation": "Моё местоположение",
             "bio": "О себе"
+        },
+        "sections": {
+            "profile": "Профиль",
+            "privacy": "Конфиденциальность",
+            "preferences": "Предпочтения"
         }
     },
 
@@ -179,5 +187,12 @@
 
     "listingCreate": {
         "selectType": "Какое объявление вы хотите создать?"
+    },
+    "listingManage": {
+        "sections": {
+            "SETTINGS": "Настройки",
+            "ANALYTICS": "Аналитика",
+            "MESSAGES": "Отклики"
+        }
     }
 }
