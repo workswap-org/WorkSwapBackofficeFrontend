@@ -8,7 +8,11 @@
         "priceType": "Выберите тип цены...",
         "location": "Выберите локацию...",
         "review": "Напишите отзыв...",
-        "typeMessage": "Напишите сообщение..."
+        "typeMessage": "Напишите сообщение...",
+        "login": "Email",
+        "password": "Пароль",
+        "passwordConfirm": "Подтвердите пароль",
+        "name": "Имя"
     },
     "sorts": {
         "date": "По дате",
@@ -124,6 +128,7 @@
             "sort": "Сортировка",
             "filters": "Фильтры",
             "hasReviews": "С отзывами",
+            "translationsFilter": "Фильтровать по языкам",
             "usefulLinks": "Полезные ссылки"
         }
     },

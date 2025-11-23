@@ -8,7 +8,11 @@
         "priceType": "Select price type...",
         "location": "Select location...",
         "review": "Write a review...",
-        "typeMessage": "Type a message..."
+        "typeMessage": "Type a message...",
+        "login": "Email",
+        "password": "Password",
+        "passwordConfirm": "Confirm password",
+        "name": "Name"
     },
     "sorts": {
         "date": "By date",
@@ -120,6 +124,7 @@
             "sort": "Sort",
             "filters": "Filters",
             "hasReviews": "With Reviews",
+            "translationsFilter": "Filter by languages",
             "usefulLinks": "Useful Links"
         }
     },
