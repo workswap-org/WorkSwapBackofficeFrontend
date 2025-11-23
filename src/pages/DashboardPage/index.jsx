@@ -1,5 +1,5 @@
-import RecentListingsTable from "./RecentListingsTable";
-import RecentUsersTable from "./RecentUsersTable";
+import RecentListings from "./RecentListings";
+import RecentUsers from "./RecentUsers";
 import StatGrid from "./StatGrid";
 
 const DashboardPage = () => {
@@ -8,12 +8,12 @@ const DashboardPage = () => {
         <>
             <StatGrid />
             <div className="card admin-page">
-                <div className="card__body">
+                <div className="card__body normal-only">
                     
                     <h2>Последние объявления</h2>
-                    <RecentListingsTable />
+                    <RecentListings />
                     <h2>Последние пользователи</h2>
-                    <RecentUsersTable />
+                    <RecentUsers />
                 </div>
             </div>
         </>

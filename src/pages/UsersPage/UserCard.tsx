@@ -1,7 +1,10 @@
 import React from "react";
 import { Avatar } from "@core/components";
+import { User } from "@/types";
 
-type UserCardProps = { user: Object };
+type UserCardProps = {
+    user: User;
+};
 
 const UserCard: React.FC<UserCardProps> = ({user}) => {
     return (

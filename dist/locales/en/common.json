@@ -17,11 +17,13 @@
         "popularity": "By views"
     },
     "priceTypes": {
-        "fixed": "€",
-        "per-hour": "€ / hour",
-        "per-day": "€ / day",
-        "negotiable": "Negotiable",
-        "swap": "Swap",
+        "FIXED": "€",
+        "PER_HOUR": "€ / hour",
+        "PER_DAY": "€ / day",
+        "NEGOTIABLE": "Negotiable",
+        "SWAP": "Swap",
+        "FREE": "Free",
+        "WANTED_FREE": "Wanted for free",
         "null": ""
     },
     "statuses": {
@@ -89,6 +91,7 @@
         },
         
         "settings": {
+            "main": "General settings",
             "event": "Event settings",
             "product": "Product settings",
             "service": "Service settings"
@@ -102,7 +105,7 @@
         "settings": "User Settings",
         "security": "Security",
         "listingCreate": "Create listing",
-        "listingEdit": "Manage Listing",
+        "listingManage": "Manage Listing",
         "listingDrafts": "My Drafts"
     },
     "fallbacks": {
@@ -133,6 +136,11 @@
             "myLanguages": "Languages I Speak",
             "myLocation": "My Location",
             "bio": "About Me"
+        },
+        "sections": {
+            "profile": "Profile",
+            "privacy": "Privacy",
+            "preferences": "Preferences"
         }
     },
     "messenger": {
@@ -170,5 +178,12 @@
 
     "listingCreate": {
         "selectType": "What type of listing do you want to create?"
+    },
+    "listingManage": {
+        "sections": {
+            "SETTINGS": "Settings",
+            "ANALYTICS": "Analytics",
+            "MESSAGES": "Messages"
+        }
     }
 }

@@ -10,6 +10,7 @@ import CategoriesPage from "./pages/CategoriesPage";
 import DashboardPage from "./pages/DashboardPage";
 import TasksPage from "./pages/TasksPage";
 import PermissionsPage from "./pages/PermissionsPage";
+import UsersPage from "./pages/UsersPage"
 
 /* Страницы логина */
 import {
@@ -48,6 +49,7 @@ const AppRouter = () => {
                             <Route path="permissions" element={<PermissionsPage />} />
                             <Route path="dashboard" element={<DashboardPage />} />
                             <Route path="tasks" element={<TasksPage />} />
+                            <Route path="users" element={<UsersPage />} />
                         </Route>
                     </Route>
                 </Route>

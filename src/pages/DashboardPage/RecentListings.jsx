@@ -6,7 +6,7 @@ import {
     FormattedDate
 } from "@core/components";
 
-const RecentListingsTable = () => {
+const RecentListings = () => {
 
     const [listings, setListings] = useState([]);
     
@@ -34,7 +34,6 @@ const RecentListingsTable = () => {
                     <tr>
                         <th>ID</th>
                         <th>Название</th>
-                        <th>Автор</th>
                         <th>Цена</th>
                         <th>Дата</th>
                         <th>Действия</th>
@@ -46,7 +45,6 @@ const RecentListingsTable = () => {
                             <tr key={listing.id}>
                                 <td>#{listing.id}</td>
                                 <td>{listing.localizedTitle}</td>
-                                <td>{listing.author?.name}</td>
                                 <td>
                                     <PriceTypes listing={listing} />
                                 </td>
@@ -74,4 +72,4 @@ const RecentListingsTable = () => {
     );
 };
 
-export default RecentListingsTable;
+export default RecentListings;

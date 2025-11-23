@@ -1,17 +1,25 @@
 import React from "react";
-import UserCard from "./UserCard"
+import UserCard from "./UserCard";
+import { getRecentUsers } from "@core/lib";
+import { User } from "@/types";
 
 const UsersGrid = () => {
 
     const [users, setUsers] = React.useState([]);
 
     React.useEffect(() => {
-        const data = await loadUsers
+        async function loadUsers(amount:number) {
+            const data = await getRecentUsers(amount);
+            setUsers(data);
+        }
+
+        loadUsers(30);
     }, [])
+    
     return (
         <div className="users-grid">
-            {users.map((user) => (
-                <UserCard user={user}/>
+            {users.map((user:User) => (
+                <UserCard user={user} key={user.id}/>
             ))}
         </div>
     );

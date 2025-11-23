@@ -3,7 +3,7 @@ import { getRecentUsers } from "@core/lib";
 import { FormattedDate } from "@core/components"
 import { Link } from "react-router-dom";
 
-const RecentListingsTable = () => {
+const RecentUsers = () => {
 
     const [users, setUsers] = useState([]);
     
@@ -66,4 +66,4 @@ const RecentListingsTable = () => {
     );
 };
 
-export default RecentListingsTable;
+export default RecentUsers;
