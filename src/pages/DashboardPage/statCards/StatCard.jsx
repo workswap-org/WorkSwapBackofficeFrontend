@@ -12,7 +12,8 @@ const StatCard = ({ value, metrics, title }) => {
                 <div className="stat-card__value">{value}</div>
             </Tooltip>
             <div className={`stat-card__change ${isPositive ? "positive" : "negative"}`}>
-                <i className={`fa-solid ${isPositive ? "fa-arrow-up" : "fa-arrow-down"}`}></i> {changePercent} за месяц
+                <i className={`fa-solid ${isPositive ? "fa-arrow-up" : "fa-arrow-down"}`}></i> 
+                <span>{changePercent} за месяц</span>
             </div>
         </div>
     );
