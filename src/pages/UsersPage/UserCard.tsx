@@ -1,6 +1,6 @@
 import React from "react";
 import { Avatar } from "@core/components";
-import { User } from "@/types";
+import { User } from "@core/lib";
 
 type UserCardProps = {
     user: User;

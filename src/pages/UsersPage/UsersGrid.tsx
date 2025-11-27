@@ -1,7 +1,7 @@
 import React from "react";
 import UserCard from "./UserCard";
 import { getRecentUsers } from "@core/lib";
-import { User } from "@/types";
+import { User } from "@core/lib";
 
 const UsersGrid = () => {
 

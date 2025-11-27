@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path' // ← вот это нужно добавить
+import path from 'path'
 import { fileURLToPath } from 'url'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
@@ -27,13 +27,6 @@ export default defineConfig({
             'dash.workswap.org'
         ],
         port: 30008,
-        proxy: {
-            "/proxy": {
-                target: "https://api.workswap.org",
-                changeOrigin: true,
-                secure: false,
-            },
-        },
     },
     define: {
         global: 'window'
