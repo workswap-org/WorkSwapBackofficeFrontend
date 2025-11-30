@@ -5,22 +5,8 @@ import CategoryTable from "./CategoryTable";
 
 const CategoriesPage = () => {
     const [categories, setCategories] = useState([]);
-    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const data = await getAllCategories();
-                setCategories([data.service, data.product]);
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchCategories();
-    }, []);
+    useEffect(() => getAllCategories().then(data => setCategories(data)), []);
 
     const onAddCategory = () => {
         console.log("TODO: add category");
@@ -33,10 +19,6 @@ const CategoriesPage = () => {
     const onDeleteCategory = (id) => {
         console.log("TODO: delete category", id);
     };
-
-    if (loading) {
-        return <div>Загрузка...</div>;
-    }
 
     return (
         <>

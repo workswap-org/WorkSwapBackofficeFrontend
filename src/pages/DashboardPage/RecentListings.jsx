@@ -10,18 +10,7 @@ const RecentListings = () => {
 
     const [listings, setListings] = useState([]);
     
-    useEffect(() => {
-        const fetchListings = async () => {
-            try {
-                const data = await getRecentListings(3);
-                setListings(data || []);
-            } catch (err) {
-                console.error(err);
-            }
-        };
-
-        fetchListings();
-    }, []);
+    useEffect(() => getRecentListings(3).then(data => setListings(data)), [])
 
     const handleRowClick = () => {
         window.location.href = "/listings";
