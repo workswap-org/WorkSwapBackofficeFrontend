@@ -6,7 +6,9 @@ import CategoryTable from "./CategoryTable";
 const CategoriesPage = () => {
     const [categories, setCategories] = useState([]);
 
-    useEffect(() => getAllCategories().then(data => setCategories(data)), []);
+    useEffect(() => {
+        getAllCategories().then(data => setCategories(data))
+    }, []);
 
     const onAddCategory = () => {
         console.log("TODO: add category");
