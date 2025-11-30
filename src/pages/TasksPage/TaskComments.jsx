@@ -15,7 +15,7 @@ const TaskComments = ({taskId}) => {
             try {
                 const data = await getTaskComments(taskId);
                 console.log(data);
-                setComments(data.comments || {});
+                setComments(data || {});
             } catch (err) {
                 console.error(err);
             }

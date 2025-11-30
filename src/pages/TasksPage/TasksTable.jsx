@@ -25,7 +25,7 @@ const TaskTable = ({ onSelectTask }) => {
             try {
                 const data = await getSortedTasks(params);
                 console.log(data)
-                setTasks(data.tasks || []);
+                setTasks(data || []);
             } catch (err) {
                 console.error(err);
             }

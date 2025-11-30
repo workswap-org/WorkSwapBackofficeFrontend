@@ -9,7 +9,7 @@ const PermissionsList = ( {permissions, selectedRole, setSaving} ) => {
     useEffect(() => {
         async function loadPermsByRole() {
             const data = await getRolePermissions(selectedRole?.id);
-            setCheckedPermissions(data.permissions);
+            setCheckedPermissions(data);
         }
 
         if (selectedRole) {

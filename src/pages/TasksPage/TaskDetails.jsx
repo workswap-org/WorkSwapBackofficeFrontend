@@ -6,8 +6,6 @@ const TaskDetails = ({taskId}) => {
 
     const { user } = useAuth();
     const [task, setTask] = useState(null);
-    const [author, setAuthor] = useState(null)
-    const [executor, setExecutor] = useState(null)
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -17,11 +15,7 @@ const TaskDetails = ({taskId}) => {
         setError(null);
 
         getTaskDetails(taskId)
-            .then((res) => {
-                setTask(res.task || []);
-                setAuthor(res.author || []);
-                setExecutor(res.executor || [])
-            })
+            .then((data) => setTask(data || {}))
             .catch(setError)
             .finally(() => setLoading(false));
     }, [taskId]);
@@ -34,7 +28,7 @@ const TaskDetails = ({taskId}) => {
     const canPickUp = isNew || isCanceled;
     const canComplete = user?.id === task?.executorId && isInProgress;
     const canCancel = canComplete || isNew;
-    const canEdit = user?.id === executor?.id && isInProgress;
+    const canEdit = user?.id === task?.executor?.id && isInProgress;
 
     const formattedCreatedAt = useMemo(
         () => (task?.createdAt ? new Date(task.createdAt).toLocaleString("ru-RU") : "-"),
@@ -57,10 +51,10 @@ const TaskDetails = ({taskId}) => {
 
             <br />
 
-            <TaskDetail label="Автор" value={author?.name} />
+            <TaskDetail label="Автор" value={task.author?.name} />
 
-            {isCanceled && <TaskDetail label="Выполнил" value={executor?.name} />}
-            {isInProgress && <TaskDetail label="Выполняющий" value={executor?.name} />}
+            {isCanceled && <TaskDetail label="Выполнил" value={task?.executor?.name} />}
+            {isInProgress && <TaskDetail label="Выполняющий" value={task?.executor?.name} />}
 
             <br />
 

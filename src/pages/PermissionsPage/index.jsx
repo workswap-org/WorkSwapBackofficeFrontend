@@ -27,12 +27,12 @@ const PermissionsPage = () => {
     useEffect(() => {
         async function loadRoles() {
             const data = await getAllRoles();
-            setRoles(data.roles);
+            setRoles(data);
         }
 
         async function loadPerms() {
             const data = await getAllPermissions();
-            setPermissions(data.permissions);
+            setPermissions(data);
         }
 
         loadPerms();
