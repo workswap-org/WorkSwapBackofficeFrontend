@@ -15,8 +15,7 @@ const TaskDetails = ({taskId}) => {
         setError(null);
 
         getTaskDetails(taskId)
-            .then((data) => setTask(data || {}))
-            .catch(setError)
+            .then(data => setTask(data || {}))
             .finally(() => setLoading(false));
     }, [taskId]);
 
