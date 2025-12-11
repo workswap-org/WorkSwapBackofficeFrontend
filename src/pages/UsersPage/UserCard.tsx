@@ -1,9 +1,9 @@
 import React from "react";
 import { Avatar } from "@core/components";
-import { User } from "@core/lib";
+import { IUser } from "@core/lib";
 
 type UserCardProps = {
-    user: User;
+    user: IUser;
 };
 
 const UserCard: React.FC<UserCardProps> = ({user}) => {

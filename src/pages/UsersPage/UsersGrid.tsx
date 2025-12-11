@@ -1,7 +1,7 @@
 import React from "react";
 import UserCard from "./UserCard";
 import { getRecentUsers } from "@core/lib";
-import { User } from "@core/lib";
+import { IUser } from "@core/lib";
 
 const UsersGrid = () => {
 
@@ -18,7 +18,7 @@ const UsersGrid = () => {
     
     return (
         <div className="users-grid">
-            {users.map((user:User) => (
+            {users.map((user:IUser) => (
                 <UserCard user={user} key={user.id}/>
             ))}
         </div>

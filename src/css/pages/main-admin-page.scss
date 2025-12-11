@@ -26,7 +26,7 @@
         height: 100vh;
         overflow-y: auto;
 
-        scrollbar-color: var(--gray) #00000000;
+        scrollbar-color: var(--text-color-l1) #00000000;
 
         @include tablet-lg {
             width: 100%;
