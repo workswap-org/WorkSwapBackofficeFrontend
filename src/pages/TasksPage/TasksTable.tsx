@@ -1,22 +1,21 @@
-import { getTasksMetadata, getSortedTasks } from "@core/lib";
-import { useState, useEffect } from "react";
-import { Avatar } from "@core/components";
+import { getTasksMetadata, getSortedTasks, ITask } from "@core/lib";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import TasksList from "./TasksList";
 
-const TaskTable = ({ onSelectTask }) => {
+const TaskTable = ({ onSelectTask }: { onSelectTask: Dispatch<SetStateAction<number | null>> }) => {
 
-    const [sort, setSort] = useState("created");
-    const [taskType, setTaskType] = useState("");
-    const [taskStatus, setTaskStatus] = useState("");
+    const [sort, setSort] = useState<string>("created");
+    const [taskType, setTaskType] = useState<string>("");
+    const [taskStatus, setTaskStatus] = useState<string>("");
 
-    const [taskTypeList, setTaskTypeList] = useState([]);
-    const [taskStatusList, setTaskStatusList] = useState([]);
+    const [taskTypeList, setTaskTypeList] = useState<string[] | null>(null);
+    const [taskStatusList, setTaskStatusList] = useState<string[] | null>(null);
 
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState<ITask[] | null>(null);
 
     useEffect(() => {
         async function loadSortedTasks() {
-            const params = {};
+            const params: any = {};
 
             if (taskType) params.type = taskType;
             if (sort) params.sort = sort;
@@ -65,35 +64,39 @@ const TaskTable = ({ onSelectTask }) => {
                         <option value="completed">По дате выполнения</option>
                     </select>
 
-                    <select
-                        name="taskType"
-                        id="taskType"
-                        value={taskType}
-                        onChange={(e) => setTaskType(e.target.value)}
-                        required
-                    >
-                        <option value="">Тип задачи</option>
-                        {taskTypeList.map((type) => (
-                            <option key={type} value={type}>
-                                {type}
-                            </option>
-                        ))}
-                    </select>
+                    {taskTypeList && (
+                        <select
+                            name="taskType"
+                            id="taskType"
+                            value={taskType}
+                            onChange={(e) => setTaskType(e.target.value)}
+                            required
+                        >
+                            <option value="">Тип задачи</option>
+                            {taskTypeList.map((type) => (
+                                <option key={type} value={type}>
+                                    {type}
+                                </option>
+                            ))}
+                        </select>
+                    )}
 
-                    <select
-                        name="taskStatus"
-                        id="taskStatus"
-                        value={taskStatus}
-                        onChange={(e) => setTaskStatus(e.target.value)}
-                        required
-                    >
-                        <option value="">Статус</option>
-                        {taskStatusList.map((status) => (
-                            <option key={status} value={status}>
-                                {status}
-                            </option>
-                        ))}
-                    </select>
+                    {taskStatusList && (
+                        <select
+                            name="taskStatus"
+                            id="taskStatus"
+                            value={taskStatus}
+                            onChange={(e) => setTaskStatus(e.target.value)}
+                            required
+                        >
+                            <option value="">Статус</option>
+                            {taskStatusList.map((status) => (
+                                <option key={status} value={status}>
+                                    {status}
+                                </option>
+                            ))}
+                        </select>
+                    )}
                 </div>
                 <div className="tasks-list" id="tasksTable">
                     <TasksList 

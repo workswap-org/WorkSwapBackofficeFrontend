@@ -39,6 +39,10 @@ img {
     display: block;
 }
 
+span {
+    color: var(--text-color);
+}
+
 .card {
     background: var(--background-l1);
     border-radius: var(--radius);

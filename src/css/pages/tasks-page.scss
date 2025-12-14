@@ -41,8 +41,6 @@
     .tasks-aside {
         @include flex-column;
         gap: 1rem;
-        width: 300px;
-        overflow: auto;
 
         .task-details {
             background-color: var(--background-l1);

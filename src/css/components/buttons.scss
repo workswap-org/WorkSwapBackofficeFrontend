@@ -135,4 +135,8 @@
 .btn-actions-group {
     display: inline-flex;
     gap: 0.5rem;
+
+    & > button {
+        display: flex;
+    }
 }

@@ -1,10 +1,16 @@
-import { useEffect, useState } from "react";
-import { getRolePermissions } from "@core/lib";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { getRolePermissions, IPermission, IRole } from "@core/lib";
 import PermissionItem from "./PermissionItem";
 
-const PermissionsList = ( {permissions, selectedRole, setSaving} ) => {
+interface PermissionsListProps {
+    permissions: IPermission[] | null;
+    selectedRole: IRole | null;
+    setSaving: Dispatch<SetStateAction<boolean>>
+}
 
-    const [checkedPermissions, setCheckedPermissions] = useState([]);
+const PermissionsList = ({permissions, selectedRole, setSaving}: PermissionsListProps) => {
+
+    const [checkedPermissions, setCheckedPermissions] = useState<IPermission[] | null>(null);
 
     useEffect(() => {
         async function loadPermsByRole() {
@@ -19,7 +25,7 @@ const PermissionsList = ( {permissions, selectedRole, setSaving} ) => {
 
     return (
         <div className="permissions-list" id="permissionsList">
-            {permissions.map((perm) => (
+            {permissions?.map((perm) => (
                 <PermissionItem 
                     key={perm.id}
                     permission={perm} 

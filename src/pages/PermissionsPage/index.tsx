@@ -1,28 +1,24 @@
 import { useCallback, useEffect, useState } from "react";
 import { 
     getAllRoles,
-    getAllPermissions
+    getAllPermissions,
+    IRole,
+    IPermission
 } from "@core/lib";
-import RolesList from "./RolesList";
+import RolesList from "./RolesList.tsx";
 import PermissionsList from "./PermissionsList";
 import RoleCreateModal from "./RoleCreateModal";
 import PermissionCreateModal from "./PermissionCreateModal";
+import { SidebarSectionLayout } from "@core/components/index.js";
 
 const PermissionsPage = () => {
 
-    const [roles, setRoles] = useState([]);
-    const [selectedRole, setSelectedRole] = useState(undefined);
-    const [permissions, setPermissions] = useState([]);
-    const [roleListVisible, setRoleListVisible] = useState(true);
+    const [roles, setRoles] = useState<IRole[] | null>(null);
+    const [selectedRole, setSelectedRole] = useState<IRole | null>(null);
+    const [permissions, setPermissions] = useState<IPermission[] | null>(null);
+    const [roleListVisible, setRoleListVisible] = useState<boolean>(true);
 
-    const [roleCreateModal, setRoleCreateModal] = useState(false);
-    const [permissionCreateModal, setPermissionCreateModal] = useState(false);
-
-    const [saving, setSaving] = useState(false)
-    
-    function toggleRoleList() {
-        setRoleListVisible(!roleListVisible)
-    }
+    const [saving, setSaving] = useState<boolean>(false)
 
     useEffect(() => {
         async function loadRoles() {
@@ -39,27 +35,37 @@ const PermissionsPage = () => {
         loadRoles();
     }, [])
 
-    const selectRole = useCallback((role) => {
+    const selectRole = useCallback((role: IRole) => {
         setSelectedRole(role);
         setRoleListVisible(false)
     }, [])
 
+    const addRole = useCallback((role: IRole) => {
+        setRoles((prev) => {
+            if (!prev) return prev;
+            return ([...prev, role]);
+        })
+    }, [setRoles])
+
+    const addPermission = useCallback((perm: IPermission) => {
+        setPermissions(prev => {
+            if (!prev) return prev;
+            return ([...prev, perm]);
+        })
+    }, [setPermissions])
+
     return (
         <>
             <div className="card admin-page">
-                <div className="card-body flex-column">
-                    <div className="card-header">
+                <div className="card__body flex-column">
+                    <div className="card__header">
                         <div className="btn-actions-group">
-                            <button onClick={() => setRoleCreateModal(true)} className="btn btn-primary">
-                                <i className="fa-solid fa-plus"></i> Роль
-                            </button>
-                            <button onClick={() => setPermissionCreateModal(true)} className="btn btn-primary">
-                                <i className="fa-solid fa-plus"></i> Разрешение
-                            </button>
+                            <RoleCreateModal addRole={addRole}/>
+                            <PermissionCreateModal addPermission={addPermission}/>
                         </div>
                     </div>
                     {selectedRole ? (
-                        <div className="selected-role" onClick={() => toggleRoleList()}>
+                        <div className="selected-role" onClick={() => setRoleListVisible(prev => !prev)}>
                             {selectedRole.name}
                         </div>
                     ) : (
@@ -79,12 +85,6 @@ const PermissionsPage = () => {
                             permissions={permissions}
                             setSaving={setSaving}
                         />
-                        {roleCreateModal && (
-                            <RoleCreateModal setRoleCreateModal={setRoleCreateModal}/>
-                        )}
-                        {permissionCreateModal && (
-                            <PermissionCreateModal setPermissionCreateModal={setPermissionCreateModal}/>
-                        )}
                     </div>
                 </div>
             </div>

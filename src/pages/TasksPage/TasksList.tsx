@@ -1,13 +1,22 @@
 import { Avatar } from "@core/components";
+import { ITask, useAuth } from "@core/lib";
+import { Dispatch, SetStateAction } from "react";
 
-const TasksList = ({ tasks, user, onSelectTask = () => {}}) => {
+interface TaskListProps {
+    tasks: ITask[] | null;
+    onSelectTask: Dispatch<SetStateAction<number | null>>
+}
+
+const TasksList = ({ tasks, onSelectTask = () => {}}: TaskListProps) => {
+
+    const { user } = useAuth();
     if (!tasks || tasks.length === 0) {
         return (
             <div className="admin-table-wrapper">
                 <table className="admin-table">
                     <tbody>
                         <tr>
-                            <td colSpan="6" className="text-center">Нет задач</td>
+                            <td colSpan={6} className="text-center">Нет задач</td>
                         </tr>
                     </tbody>
                 </table>
@@ -69,7 +78,7 @@ const TasksList = ({ tasks, user, onSelectTask = () => {}}) => {
                                         </button>
                                     )}
 
-                                    {user?.id === task.executor?.id && task.status.code === "IN_PROGRESS" && (
+                                    {user?.id == task.executorId && task.status.code === "IN_PROGRESS" && (
                                         <>
                                             <button
                                                 data-task={task.id}

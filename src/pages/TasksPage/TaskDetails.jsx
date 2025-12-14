@@ -6,17 +6,14 @@ const TaskDetails = ({taskId}) => {
 
     const { user } = useAuth();
     const [task, setTask] = useState(null);
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         if (!taskId) return;
-        setLoading(true);
         setError(null);
+        setTask(null)
 
-        getTaskDetails(taskId)
-            .then(data => setTask(data || {}))
-            .finally(() => setLoading(false));
+        getTaskDetails(taskId).then(data => setTask(data))
     }, [taskId]);
 
     const isInProgress = task?.status?.code === "IN_PROGRESS";
@@ -38,19 +35,17 @@ const TaskDetails = ({taskId}) => {
         [task?.completed]
     );
 
-    if (loading) return <div className="task-details loading">Загрузка...</div>;
     if (error) return <div className="task-details error">Ошибка загрузки</div>;
-    if (!taskId) return null;
 
     return (
-        <div className={`task-details ${taskId ? "active" : ""}`}>
+        <div className={`task-details ${task ? "active" : ""}`}>
             <TaskDetail label="Название" value={task?.name} />
             <TaskDetail label="Описание" value={task?.description} />
             <TaskDetail label="Статус" value={task?.status?.name} />
 
             <br />
 
-            <TaskDetail label="Автор" value={task.author?.name} />
+            <TaskDetail label="Автор" value={task?.author?.name} />
 
             {isCanceled && <TaskDetail label="Выполнил" value={task?.executor?.name} />}
             {isInProgress && <TaskDetail label="Выполняющий" value={task?.executor?.name} />}

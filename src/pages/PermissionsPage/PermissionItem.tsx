@@ -1,10 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
-import PermissionActions from "./PermissionActions";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { 
     updateRolePermissions, 
     updatePermission, 
-    useNotification 
+    useNotification, 
+    IPermission,
+    IRole
 } from '@core/lib';
+import { ActionMenu } from '@core/components';
+import { IKebabAction } from '@core/components/ui/ActionMenu';
+
+interface PermissionItemProps {
+    permission: IPermission | null;
+    setSaving: Dispatch<SetStateAction<boolean>>;
+    selectedRole: IRole | null;
+    checkedPermissions: IPermission[] | null;
+    setCheckedPermissions: Dispatch<SetStateAction<IPermission[] | null>>;
+} 
 
 const PermissionItem = ({
     permission,
@@ -12,15 +23,15 @@ const PermissionItem = ({
     selectedRole,
     checkedPermissions,
     setCheckedPermissions
-}) => {
+}: PermissionItemProps) => {
 
-    const notificate = useNotification()
+    const { notificate } = useNotification()
 
     const [editMode, setEditMode] = useState(false);
-    const [permissionName, setPermissionName] = useState(permission.name);
-    const [permissionComment, setPermissionComment] = useState(permission.comment);
+    const [permissionName, setPermissionName] = useState(permission?.name);
+    const [permissionComment, setPermissionComment] = useState(permission?.comment);
 
-    const inputRef = useRef(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
         if (editMode && inputRef.current) {
@@ -28,47 +39,60 @@ const PermissionItem = ({
         }
     }, [editMode]);
 
-    async function savePermissions(permId, enabled) {
+    async function savePermissions(permId: number, enabled: boolean) {
         const params = {
             permissionId: permId,
             enabled
         }
-        const data = await updateRolePermissions(selectedRole.id, params);
-        if (data.message) setSaving(false);
+        const res = await updateRolePermissions(selectedRole?.id, params);
+        if (res.ok) setSaving(false);
     }
 
-    function changeRolePerms(perm, enabled) {
+    function changeRolePerms(perm: IPermission | null, enabled: boolean) {
+        if (!perm) return
         setSaving(true);
         savePermissions(perm.id, enabled);
         setCheckedPermissions(prev => {
             // если уже есть — удалить
+            if (!prev) return prev;
+
             if (prev.some(p => p.id === perm.id)) {
                 return prev.filter(p => p.id !== perm.id);
             } else {
-                return [...prev, { id: perm.id, name: perm.name }];
+                return [...prev, perm];
             }
         });
     }
 
-    async function savePermission(id) {
-        const params = {};
+    async function savePermission(id: number | null) {
+        if (!id) return
+        const params: IPermission = {id: 0, name: "", comment: ""};
         if (permissionName) params.name = permissionName;
         params.comment = permissionComment || "";
         setEditMode(false);
         const res = await updatePermission(id, params);
-        if (res.message) {
-            notificate(res.message, res.status);
+        if (!res.ok) {
+            notificate("Разрешение успешно создано", "error");
         }
     }
 
-    const handleEnterDown = (e) => {
-        if (e.key === 'Enter') {
-            savePermission(permission.id);
+    const handleEnterDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') { 
+            savePermission(permission?.id ?? null);
         }
     };
 
+    const actions: IKebabAction[] = [];
+    actions.push({
+        title: "Изменить",
+        func: () => {
+            setEditMode(!editMode)
+        },
+        icon: "pen"
+    })
+
     return (
-        <div className="permission-item" key={permission.id}>
+        <div className="permission-item" key={permission?.id}>
             {editMode ? (
                 <>
                     <input
@@ -102,7 +126,7 @@ const PermissionItem = ({
                 <label className="switch perm-toggler">
                     <input 
                         type="checkbox"
-                        checked={checkedPermissions.some(p => p.id === permission.id)}
+                        checked={checkedPermissions?.some(p => p.id === permission?.id)}
                         onChange={(e) => changeRolePerms(permission, e.target.checked)}
                     />
                     <span className="slider">
@@ -111,7 +135,7 @@ const PermissionItem = ({
                     </span>
                 </label>
             )}
-            <PermissionActions setEditMode={setEditMode} editMode={editMode} />
+            <ActionMenu actions={actions}/>
         </div>
     );
 };

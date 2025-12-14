@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const TasksPage = () => {
 
-    const [selectedTaskId, setSelectedTaskId] = useState(null);
+    const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null);
 
     return (
         <>
