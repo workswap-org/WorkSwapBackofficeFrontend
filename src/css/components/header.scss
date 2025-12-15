@@ -12,14 +12,14 @@
     z-index: 100;
     margin-bottom: 2rem;
 
-    @include tablet-lg {
+    @include tablet {
         padding: 0.5rem 1rem;
     }
 
     h1 {
         white-space: nowrap;
 
-        @include tablet-lg {
+        @include tablet {
             overflow: hidden;
             text-overflow: ellipsis;
             font-size: 1.3rem;
@@ -29,7 +29,7 @@
     .mobile-menu-btn {
         display: none;
 
-        @include tablet-lg {
+        @include tablet {
             display: block;
         }
     }
@@ -39,7 +39,7 @@
         align-items: center;
         gap: 1rem;
 
-        @include tablet-lg {
+        @include tablet {
             display: none;
             align-items: center;
             gap: 1rem;
@@ -62,7 +62,7 @@
 
             text-decoration: none;
 
-            @include tablet-lg {
+            @include tablet {
                 display: none;
             }
 
