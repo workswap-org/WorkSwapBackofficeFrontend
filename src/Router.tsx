@@ -10,7 +10,7 @@ import CategoriesPage from "./pages/CategoriesPage";
 import DashboardPage from "./pages/DashboardPage";
 import TasksPage from "./pages/TasksPage";
 import PermissionsPage from "./pages/PermissionsPage";
-import UsersPage from "./pages/UsersPage"
+import UsersPage from "./pages/users/UsersPage"
 
 /* Страницы логина */
 import {
@@ -24,6 +24,7 @@ import {
     PrivateRoute,
     AuthGuard
 } from "@core/routes";
+import { UserControlPage } from "./pages";
 
 const AppRouter = () => {
     return (
@@ -49,7 +50,10 @@ const AppRouter = () => {
                             <Route path="permissions" element={<PermissionsPage />} />
                             <Route path="dashboard" element={<DashboardPage />} />
                             <Route path="tasks" element={<TasksPage />} />
-                            <Route path="users" element={<UsersPage />} />
+                            <Route path="users">
+                                <Route index element={<UsersPage />} />
+                                <Route path=":userOpenId" element={<UserControlPage />} />
+                            </Route>
                         </Route>
                     </Route>
                 </Route>

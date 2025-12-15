@@ -2,6 +2,8 @@ import StatCard from "./statCards/StatCard";
 import OnlineStatCard from "./statCards/OnlineStatCard";
 import { useState } from "react";
 import UsersStatCard from "./statCards/UsersStatCard";
+import ListingsStatCard from "./statCards/ListingsStatCard";
+import ViewsStatCard from "./statCards/ViewsStatCard";
 
 export const Intervals = Object.freeze({
     ONE_DAY: { type: "DAY", multiplier: 1, title: "1 День" },
@@ -34,8 +36,8 @@ const StatGrid = () => {
             <div className="stats-grid">
                 <UsersStatCard title="Пользователи" interval={interval} />
                 <OnlineStatCard title="Онлайн" />
-                <StatCard value={0} title="Объявления" />
-                <StatCard value={0} title="Просмотры" />
+                <ListingsStatCard title="Объявления" interval={interval} />
+                <ViewsStatCard title="Просмотры" interval={interval} />
                 <StatCard value={0} title="Доход" />
             </div>
         </div>
