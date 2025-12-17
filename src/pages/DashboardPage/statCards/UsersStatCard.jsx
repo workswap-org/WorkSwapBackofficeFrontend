@@ -1,5 +1,5 @@
 import { FormattedDate, Tooltip } from "@core/components";
-import { getUsersCountMetrics } from "@core/lib";
+import { formatSignedValue, getUsersCountMetrics } from "@core/lib";
 import { useEffect, useState } from "react";
 
 const UsersStatCard = ({interval}) => {
@@ -11,7 +11,7 @@ const UsersStatCard = ({interval}) => {
             const data = await getUsersCountMetrics(interval.type, interval.multiplier);
             console.log(data)
             setMetrics(data);
-            setUsersCount(data.standartsUsersCount);
+            setUsersCount(data.usersCount);
         }
 
         loadOnlineMetrics(interval)
@@ -22,16 +22,19 @@ const UsersStatCard = ({interval}) => {
         Временных пользователей: ${metrics?.tempUsersCount}
 
         Показатели: (${interval.title})
-        Все пользователи: ${metrics?.usersChange > 0 ? "+" : "-"}${metrics?.usersChange}
-        Зарегистрированные пользователи: ${metrics?.standardUsersChange > 0 ? "+" : "-"}${metrics?.standardUsersChange}
-        Временные пользователи: ${metrics?.tempUsersChange > 0 ? "+" : "-"}${metrics?.tempUsersChange}
+        Все пользователи: ${formatSignedValue(metrics?.usersChange)}
+        Зарегистрированные пользователи: ${formatSignedValue(metrics?.standardUsersChange)}
+        Временные пользователи: ${formatSignedValue(metrics?.tempUsersChange)}
     `
 
     return (
         <div className="stat-card">
             <div className="stat-card__title">Пользователи</div>
             <Tooltip text={onlineMetricsText}>
-                <div className="stat-card__value">{usersCount}</div>
+                <div className="stat-card__value">
+                    <span id="value">{usersCount}</span>
+                    <span id="change">({formatSignedValue(metrics?.usersChange)})</span>
+                </div>
             </Tooltip>
             <div className={`stat-card__change ${metrics.standardUsersChange > 0 ? "positive" : "negative"}`}>
                 <i className={`fa-solid fa-arrow-${metrics.standardUsersChange > 0 ? "up" : "down"}`}></i>

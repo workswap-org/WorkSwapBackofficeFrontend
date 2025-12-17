@@ -1,5 +1,5 @@
 import { FormattedDate, Tooltip } from "@core/components";
-import { getListingsCountMetrics } from "@core/lib";
+import { formatSignedValue, getListingsCountMetrics } from "@core/lib";
 import { useEffect, useState } from "react";
 
 const ListingsStatCard = ({interval}) => {
@@ -22,20 +22,23 @@ const ListingsStatCard = ({interval}) => {
         Черновиков объявлений: ${metrics?.temporaryListingsCount}
 
         Показатели: (${interval.title})
-        Все объявления: ${metrics?.listingsChange > 0 ? "+" : "-"}${metrics?.listingsChange}
-        Активных объявлений: ${metrics?.publishedListingsChange > 0 ? "+" : "-"}${metrics?.publishedListingsChange}
-        Черновиков объявлений: ${metrics?.temporaryListingsChange > 0 ? "+" : "-"}${metrics?.temporaryListingsChange}
+        Все объявления: ${formatSignedValue(metrics?.listingsChange)}
+        Активных объявлений: ${formatSignedValue(metrics?.publishedListingsChange)}
+        Черновиков объявлений: ${formatSignedValue(metrics?.temporaryListingsChange)}
     `
 
     return (
         <div className="stat-card">
             <div className="stat-card__title">Объявления</div>
             <Tooltip text={onlineMetricsText}>
-                <div className="stat-card__value">{listingsCount}</div>
+                <div className="stat-card__value">
+                    <span id="value">{listingsCount}</span>
+                    <span id="change">({formatSignedValue(metrics?.listingsChange)})</span>
+                </div>
             </Tooltip>
-            <div className={`stat-card__change ${metrics.standardUsersChange > 0 ? "positive" : "negative"}`}>
-                <i className={`fa-solid fa-arrow-${metrics.standardUsersChange > 0 ? "up" : "down"}`}></i>
-                <span>{(metrics.standardUsersChange / metrics.standartsUsersCount * 100).toFixed(0)}%</span>
+            <div className={`stat-card__change ${metrics.publishedListingsChange > 0 ? "positive" : "negative"}`}>
+                <i className={`fa-solid fa-arrow-${metrics.publishedListingsChange > 0 ? "up" : "down"}`}></i>
+                <span>{(metrics.listingsChange / metrics.listingsCount * 100).toFixed(0)}%</span>
             </div>
             {/* <FormattedDate isoDate={metrics?.peakDay} format="DM"/> */}
         </div>

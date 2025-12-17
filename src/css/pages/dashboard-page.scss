@@ -53,9 +53,20 @@
             }
 
             &__value {
-                font-size: 1.75rem;
-                font-weight: 600;
-                color: var(--text-color);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                span#value {
+                    font-size: 1.75rem;
+                    font-weight: 600;
+                    color: var(--text-color);
+                }
+                span#change {
+                    font-size: 1.75rem;
+                    font-weight: 500;
+                    color: var(--text-color-l1);
+                }
             }
 
             &__change {

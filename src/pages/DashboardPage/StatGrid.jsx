@@ -34,11 +34,11 @@ const StatGrid = () => {
                 ))}
             </select>
             <div className="stats-grid">
-                <UsersStatCard title="Пользователи" interval={interval} />
                 <OnlineStatCard title="Онлайн" />
+                <UsersStatCard title="Пользователи" interval={interval} />
                 <ListingsStatCard title="Объявления" interval={interval} />
                 <ViewsStatCard title="Просмотры" interval={interval} />
-                <StatCard value={0} title="Доход" />
+                {/* <StatCard value={0} title="Доход" /> */}
             </div>
         </div>
     );

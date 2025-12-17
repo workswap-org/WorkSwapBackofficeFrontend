@@ -46,7 +46,9 @@ const OnlineStatCard = () => {
         <div className="stat-card">
             <div className="stat-card__title">Онлайн</div>
             <Tooltip text={onlineMetricsText}>
-                <div className="stat-card__value">{online}</div>
+                <div className="stat-card__value">
+                    <span id="value">{online}</span>
+                </div>
             </Tooltip>
             {/* <div className={`stat-card-change ${isPositive ? "positive" : "negative"}`}>
                 <i className={`fa-solid ${isPositive ? "fa-arrow-up" : "fa-arrow-down"}`}></i> {changePercent} за месяц
