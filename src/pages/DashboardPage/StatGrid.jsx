@@ -10,7 +10,7 @@ export const Intervals = Object.freeze({
     THREE_DAYS: { type: "DAY", multiplier: 2, title: "3 Дня" },
     ONE_WEEK: { type: "DAY", multiplier: 7, title: "1 Неделя" },
     TWO_WEEKS: { type: "DAY", multiplier: 14, title: "2 недели" },
-    ONE_MONTH: { type: "MONTH", multiplier: 1, title: "1 Месяц" },
+    ONE_MONTH: { type: "DAY", multiplier: 30, title: "1 Месяц" },
 });
 
 const StatGrid = () => {
