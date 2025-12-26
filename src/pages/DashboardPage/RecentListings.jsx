@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { getRecentListings } from "@core/lib";
 import {
     PriceTypes,
-    DeleteBtn,
     FormattedDate
 } from "@core/components";
 
@@ -45,7 +44,6 @@ const RecentListings = () => {
                                         <a href={`/listing/${listing.id}`} className="btn btn-secondary mr-1">
                                             <i className="fa-solid fa-eye"></i>
                                         </a>
-                                        <DeleteBtn type="listing" id={listing.id} />
                                     </div>
                                 </td>
                             </tr>
