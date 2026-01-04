@@ -18,7 +18,7 @@
 
     &.btn-primary {
         background-color: var(--primary);
-        color: var(--permanent-text-color);
+        color: var(--permanent-light);
         border: 1px solid var(--primary);
 
         &:hover {
@@ -34,7 +34,7 @@
 
         &:hover {
             background-color: var(--danger);
-            color: var(--permanent-text-color);
+            color: var(--permanent-light);
         }
     }
 
@@ -45,7 +45,7 @@
 
         &:hover {
             background-color: var(--primary);
-            color: var(--permanent-text-color);
+            color: var(--permanent-light);
         }
     }
 
@@ -60,7 +60,7 @@
 
     &.btn-primary {
         background-color: var(--primary);
-        color: var(--permanent-text-color);
+        color: var(--permanent-light);
 
         &:hover {
             background-color: var(--primary-dark);
@@ -69,7 +69,7 @@
 
     &.btn-danger {
         background-color: #ef4444;
-        color: var(--permanent-text-color);
+        color: var(--permanent-light);
 
         &:hover {
             background-color: #dc2626;
@@ -78,7 +78,7 @@
 
     &.btn-gold {
         background-color: #d89e00;
-        color: var(--permanent-text-color);
+        color: var(--permanent-light);
 
         &:hover {
             background-color: #a87c01;
@@ -87,7 +87,7 @@
 
     &.btn-confirm {
         background-color: #29a333;
-        color: var(--permanent-text-color);
+        color: var(--permanent-light);
         
         &:hover {
             background-color: #13791b;

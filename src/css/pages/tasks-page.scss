@@ -133,6 +133,46 @@
         }
     }
 
+    .tasks-container {
+        flex: 1;
+
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+
+            .task-card {
+                border: 2px solid var(--border-color);
+                border-radius: var(--radius);
+                padding: 1rem;
+                gap: 1rem;
+                display: flex;
+                flex-direction: column;
+
+                .meta {
+                    margin-top: auto;
+                    display: flex;
+                    justify-content: space-between;
+
+                    #taskType {
+                        background-color: #55555541;
+                        padding: 2px 0.7rem;
+                        font-size: 12px;
+                        width: fit-content;
+                        border-radius: 1rem;
+                    }
+
+                    #taskStatus {
+                        padding: 2px 0.7rem;
+                        font-size: 12px;
+                        width: fit-content;
+                        border-radius: 1rem;
+                    }
+                }
+            }
+        }
+    }
+
     .global-tasks-container {
         @include flex-column;
         flex: 1;
@@ -184,7 +224,7 @@
     }
 }
 
-.status-new        { background-color: rgba(93, 213, 218, 0.4); }
-.status-progress   { background-color: rgba(241, 238, 78, 0.4); }
-.status-done       { background-color: rgba(89, 189, 86, 0.4); }
-.status-cancelled  { background-color: rgba(255, 78, 78, 0.4); }
+.status-new { background-color: rgba(55, 158, 218, 0.4); }
+.status-in_progress { background-color: rgba(241, 238, 78, 0.4); }
+.status-completed { background-color: rgba(89, 189, 86, 0.4); }
+.status-canceled { background-color: rgba(255, 78, 78, 0.4); }

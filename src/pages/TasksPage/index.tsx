@@ -1,12 +1,7 @@
 import TaskCreateModal from "./TaskCreateModal";
-import TaskComments from "./TaskComments";
-import TaskDetails from "./TaskDetails";
-import TaskTable from "./TasksTable";
-import { useState } from "react";
+import TasksGrid from "./TasksGrid";
 
 const TasksPage = () => {
-
-    const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null);
 
     return (
         <>
@@ -16,18 +11,10 @@ const TasksPage = () => {
                         <TaskCreateModal />
                     </div>
                     <div className="task-page-container">
-                        <div className="tasks-aside">
-                            <TaskDetails 
-                                taskId={selectedTaskId}
-                            />
-                            <div className="task-comments-container">
-                                <TaskComments 
-                                    taskId={selectedTaskId}
-                                />
-                            </div>
+                        <div className="tasks-container">
+                            <TasksGrid />
                         </div>
-                        <div className="global-tasks-container">
-                            <TaskTable onSelectTask={setSelectedTaskId}/>
+                        <div className="tasks-aside">
                         </div>
                     </div>
                 </div>

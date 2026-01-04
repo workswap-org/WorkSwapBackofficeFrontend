@@ -4,50 +4,6 @@ import TasksList from "./TasksList";
 
 const TaskTable = ({ onSelectTask }: { onSelectTask: Dispatch<SetStateAction<number | null>> }) => {
 
-    const [sort, setSort] = useState<string>("created");
-    const [taskType, setTaskType] = useState<string>("");
-    const [taskStatus, setTaskStatus] = useState<string>("");
-
-    const [taskTypeList, setTaskTypeList] = useState<string[] | null>(null);
-    const [taskStatusList, setTaskStatusList] = useState<string[] | null>(null);
-
-    const [tasks, setTasks] = useState<ITask[] | null>(null);
-
-    useEffect(() => {
-        async function loadSortedTasks() {
-            const params: any = {};
-
-            if (taskType) params.type = taskType;
-            if (sort) params.sort = sort;
-            if (taskStatus) params.status = taskStatus;
-
-            try {
-                const data = await getSortedTasks(params);
-                console.log(data)
-                setTasks(data || []);
-            } catch (err) {
-                console.error(err);
-            }
-        };
-    
-        loadSortedTasks();
-    }, [sort, taskStatus, taskType]);
-
-    useEffect(() => {
-    // Загружаем метаданные только один раз при загрузке страницы
-        async function loadSettings() {
-            try {
-                const data = await getTasksMetadata();
-                setTaskTypeList(data.taskTypeList || []);
-                setTaskStatusList(data.taskStatusList || []);
-            } catch (err) {
-                console.error(err);
-            }
-        }
-
-        loadSettings();
-    }, []); 
-
     return (
         <div className="task-container">
             <div className="tasks-list-container">

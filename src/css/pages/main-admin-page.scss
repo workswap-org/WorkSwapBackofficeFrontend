@@ -19,7 +19,7 @@
         flex-direction: column;
 
         background-color: var(--primary-dark);
-        color: var(--permanent-text-color);
+        color: var(--permanent-light);
         padding: 1.5rem 0;
         position: sticky;
         top: 0;
@@ -52,7 +52,7 @@
         .admin-logo {
             font-size: 1.5rem;
             font-weight: 600;
-            color: var(--permanent-text-color);
+            color: var(--permanent-light);
             text-align: center;
         }
 
@@ -77,7 +77,7 @@
             &__item {
                 display: block;
                 padding: 0.75rem 1.5rem;
-                color: var(--permanent-text-color);
+                color: var(--permanent-light);
                 text-decoration: none;
                 transition: all 0.2s;
                 border-left: 3px solid transparent;
@@ -87,7 +87,7 @@
                 }
 
                 i {
-                    color: var(--permanent-text-color);
+                    color: var(--permanent-light);
                 }
 
                 &:hover {
@@ -97,7 +97,7 @@
 
                 &.active {
                     background-color: rgba(139, 107, 107, 0.15);
-                    border-left-color: var(--permanent-text-color);
+                    border-left-color: var(--permanent-light);
                 }
 
                 i {
