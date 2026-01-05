@@ -1,9 +1,11 @@
-import { ITask } from "@core/lib";
+import { ITask, useTasks } from "@core/lib";
 
 const TaskCard = ({task}: {task: ITask}) => {
-    console.log(task)
+
+    const { selectTask } = useTasks();
+
     return (
-        <div className="task-card">
+        <div className="task-card" onClick={() => selectTask(task)}>
             <span id="title">{task.name}</span>
 
             <div className="meta">
