@@ -46,9 +46,9 @@ const AppRouter = () => {
 
                         <Route element={<PrivateRoute />}>
 
+                            <Route path="dashboard" element={<DashboardPage />} />
                             <Route path="categories" element={<CategoriesPage />} />
                             <Route path="permissions" element={<PermissionsPage />} />
-                            <Route path="dashboard" element={<DashboardPage />} />
                             <Route path="tasks" element={<TasksPage />} />
                             <Route path="users">
                                 <Route index element={<UsersPage />} />
